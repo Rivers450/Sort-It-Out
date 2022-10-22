@@ -48,6 +48,11 @@ body {
     color: rgb(245, 130, 62);
 }
 
+.navbar #current-page {
+    font-weight: bold;
+    color: rgb(245, 130, 62);
+}
+
 .footer {
     background-color: rgb(245, 130, 62);
     overflow: hidden;
