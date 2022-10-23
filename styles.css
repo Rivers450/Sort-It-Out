@@ -1,7 +1,24 @@
 body {
     font-family: Verdana, sans-serif;
+    background-color: rgb(104, 94, 149)
 }
+.mainText{
+        background-color: rgb(251, 194, 113);
 
+}
+#center1, #center2, .centerMainText{
+    text-align: center;
+    background-color: rgb(251, 194, 113);
+
+}
+h1 span{
+    border-radius: 15px;
+    background-color: rgb(213, 26, 255);
+}
+.navbar span{
+    background-color: rgb(213, 26, 255);
+
+}
 .title {
     background-color: rgb(233, 228, 255);
     text-align: center;
@@ -10,6 +27,7 @@ body {
     margin-bottom: 0px;
     width: 100%;
 }
+
 
 .title #logo {
     display: inline-block;
@@ -33,11 +51,10 @@ body {
 }
 
 .navbar a {
-    float: left;
+    float: right;
     font-size: 20px;
     color: white;
     text-align: center;
-    padding: 18px 22px;
     text-decoration: none;
     margin-left: 12px;
     margin-right: 12px;
@@ -54,7 +71,7 @@ body {
 }
 
 .footer {
-    background-color: rgb(245, 130, 62);
+    background-color: rgb(251, 194, 113);
     overflow: hidden;
     margin-bottom: 0px;
     border: 0px;
