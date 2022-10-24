@@ -118,5 +118,17 @@ input[type=button]{
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 15px;
+}
 
+#friendLeftSide{
+    text-align:left;
+    display:inline;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+#friendRightSide{
+    text-align: right;
+    margin-right: 50px;
+    margin-top:50px;
+    display:inline;
 }
