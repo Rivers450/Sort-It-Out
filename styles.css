@@ -9,7 +9,11 @@ body {
 #center1, #center2, .centerMainText, #SignUpCenter{
     text-align: center;
     background-color: rgb(251, 194, 113);
-
+}
+#PasswordReset{
+    margin-top:50px;
+    text-align :center;
+    background-color: rgb(251,194,113);
 }
 .CenteredSignUp{
     text-align: center;
@@ -131,4 +135,8 @@ input[type=button]{
     margin-right: 50px;
     margin-top:50px;
     display:inline;
+}
+
+#centerPassword{
+    text-align:center;
 }
