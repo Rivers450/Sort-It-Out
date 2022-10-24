@@ -146,3 +146,7 @@ input[type=button]{
 #centerPassword{
     text-align:center;
 }
+footer{
+    background-color: rgb(251, 194, 113);
+    font-family: Verdana, sans-serif;
+}
