@@ -70,7 +70,7 @@ h1 span{
 }
 
 .navbar a:hover {
-    font-weight: bold;
+    /* font-weight: bold; */
     color: rgb(245, 130, 62);
 }
 

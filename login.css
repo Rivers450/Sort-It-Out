@@ -41,6 +41,13 @@ form {
     /* float: right; */
     padding-top: 16px;
   }
+  .centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
   
   /* Change styles for span and cancel button on extra small screens */
  
