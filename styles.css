@@ -151,3 +151,7 @@ footer{
     background-color: rgb(251, 194, 113);
     font-family: Verdana, sans-serif;
 }
+.home-page
+{
+    background-image: "./clean.png";
+}
