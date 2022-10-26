@@ -151,3 +151,13 @@ footer{
     background-color: rgb(251, 194, 113);
     font-family: Verdana, sans-serif;
 }
+.home-page
+{
+    
+    background-color: orange;
+}
+.home-page h1
+{
+    
+   color: blue;
+}
