@@ -1,7 +1,7 @@
 <%- include('../partials/header.ejs')%>
 
     <div class="main">
-        <h1><%=user.firstName%>'s Crawls</h1>
+        <h1><%=user.firstName%>'s To Do</h1>
         <%if(crawls.length) { %>
             <table class="profile">
                 <tr class="tableTitles">
@@ -21,9 +21,9 @@
                     <%}); %>
             </table>            
         <%} else { %>
-            <h2>You have not created any crawls.</h2>
+            <h2>You have no tasks!</h2>
         <%} %>
-        <h1><%=user.firstName%>'s RSVPs</h1>
+        <h1><%=user.firstName%>'s Leaderboard</h1>
         <%if(rsvps.length) { %>
             <table class="profile">
                 <tr class="tableTitles">
@@ -40,7 +40,7 @@
                     <%}); %>
             </table>            
         <%} else { %>
-            <h2>You have not RSVP'd to anything.</h2>
+            <h2>1. <%=user.firstName%></h2>
         <%} %>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
