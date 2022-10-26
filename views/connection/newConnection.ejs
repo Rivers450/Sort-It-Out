@@ -1,0 +1,48 @@
+<%- include('../partials/header.ejs')%>
+
+    <div class="main">
+        <h1>Create A New Connection!</h1>
+
+        <form class="forms" action='/connections' method='POST'>
+            <table>
+                <tr>
+                    <td><label for="category"><b>Type of Bar Crawl:</b></label></td>
+                    <td><input type="text" id="category" name="category" class = "fixed-width" required></td>
+                </tr>
+                <tr>
+                    <td><label for="title"><b>Event Name:</b></label></td>
+                    <td><input type="text" id="title" name="title" class = "fixed-width" required></td>
+                </tr>
+                <tr>
+                    <td><label for="details"><b>Details:</b></label></td>
+                    <td><textarea rows="5" id="details" name="details" class = "fixed-width" required></textarea></td>
+                </tr>
+                <tr>
+                    <td><label for="date"><b>When:</b></label></td>
+                    <td><input type="Date" id="date" name="date" class = "fixed-width" required></td>
+                </tr>
+                <tr>
+                    <td><label for="location"><b>Meetup Location:</b></label></td>
+                    <td><input type="text" id="location" name="location" class = "fixed-width" required></td>
+                </tr>
+                <tr>
+                    <td><label for="startTime"><b>Start Time:</b></label></td>
+                    <td><input type="time" id="startTime" name="startTime" class = "fixed-width" required></td>
+                </tr>
+                <tr>
+                    <td><label for="endTime"><b>End Time:</b></label></td>
+                    <td><input type="time" id="endTime" name="endTime" class = "fixed-width" required></td>
+                </tr>
+                <tr>
+                    <td><label for="image"><b>Image URL:</b></label></td>
+                    <td><input type="text" id="image" name="image" class = "fixed-width" required></td>
+                </tr>
+                <tr>
+                    <td><button>Create Crawl</button></td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+
+<%- include('../partials/footer.ejs')%>

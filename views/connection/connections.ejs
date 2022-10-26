@@ -1,0 +1,20 @@
+<%- include('../partials/header.ejs')%>
+
+    <div class="main">
+        <br><h1>Bar Crawls</h1>
+        <% if(crawls.length) { %>
+            <% for(let i = 0; i < categories.length; i++) { %>
+                <h2 class="sub"><%= categories[i] %></h2>
+                <% crawls.forEach(crawl=>{ %>
+                    <% if(crawl.category === categories[i]) { %>
+                        <a href="/connections/<%=crawl.id%>" class="events"><p><%= crawl.title %></p></a>
+                    <% } %>
+                <% }) %>
+           <% } %>
+        <% } else { %>
+            <h2>There are no crawls to display.</h2><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <% } %>
+            <br><br><br>
+    </div>
+
+<%- include('../partials/footer.ejs')%>
