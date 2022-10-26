@@ -155,6 +155,8 @@ footer{
 {
     
     background-color: orange;
+    background-image: url('./clean.png');
+    min-height: 686px;
 }
 .home-page h1
 {
