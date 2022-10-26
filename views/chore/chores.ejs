@@ -1,0 +1,19 @@
+<%- include('../partials/header.ejs')%>
+<div class="main">
+  <br />
+  <h1>Chore History</h1>
+  <section class="choresList">
+    <% if(chores.length) { chores.map(({id, title, assignedToName,
+    assignedByName,points, deadline}) => { %>
+
+    <input type="checkbox" />
+    <div class="sub"><%= title %></div>
+    <div><%= points %></div>
+    <div><%= deadline %></div>
+    <% })} else { %>
+    <h2>There are no chores to display.</h2>
+    <% } %>
+  </section>
+  <br /><br /><br />
+</div>
+<%- include('../partials/footer.ejs')%>

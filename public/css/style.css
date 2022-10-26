@@ -212,3 +212,13 @@ input, textarea {
     padding: 25px;
     font-size: large;
 }
+
+/* Chores css */
+.choresList {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    padding: 25px;
+    margin:25px;
+}
