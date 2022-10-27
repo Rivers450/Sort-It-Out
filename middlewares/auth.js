@@ -1,4 +1,4 @@
-const Crawl = require('../models/connection');
+const Group = require('../models/group');
 
 //checks if user is a guest
 exports.isGuest = (req, res, next)=>{
@@ -20,14 +20,14 @@ exports.isLoggedIn = (req, res, next)=>{
     }
 };
 
-//checks if user is host of crawl
-exports.isHost = (req, res, next)=>{
+//checks if user is owner of group
+exports.isOwner = (req, res, next)=>{
     let id = req.params.id;
 
-    Crawl.findById(id)
-    .then(crawl=>{
-        if(crawl) {
-            if(crawl.host == req.session.user) {
+    Group.findById(id)
+    .then(group=>{
+        if(group) {
+            if(group.owner == req.session.user) {
                 return next();
             } else {
                 let err = new Error('Unauthorized to access the resource.');
@@ -35,7 +35,7 @@ exports.isHost = (req, res, next)=>{
                 return next(err);
             }
         } else {
-            let err = new Error('Cannot find a story with id ' + req.params.id);
+            let err = new Error('Cannot find a group with id ' + req.params.id);
             err.status = 404;
             return next(err);
         }
@@ -43,15 +43,15 @@ exports.isHost = (req, res, next)=>{
     .catch(err=>next(err));
 };
 
-//check if user is not host of crawl
-exports.isNotHost = (req, res, next)=>{
+//check if user is not owner of group
+exports.isNotOwner = (req, res, next)=>{
     let id = req.params.id;
 
-    Crawl.findById(id)
-    .then(crawl=>{
-        if(crawl) {
-            if(crawl.host == req.session.user) {
-                console.log("in isnothost if");
+    Group.findById(id)
+    .then(group=>{
+        if(group) {
+            if(group.owner == req.session.user) {
+                console.log("in isnotowner if");
                 let err = new Error('Unauthorized to access the resource');
                 err.status = 401;
                 return next(err);
@@ -59,7 +59,7 @@ exports.isNotHost = (req, res, next)=>{
                 return next();
             }
         } else {
-            let err = new Error('Cannot find a story with id ' + req.params.id);
+            let err = new Error('Cannot find a group with id ' + req.params.id);
             err.status = 404;
             return next(err);
         }

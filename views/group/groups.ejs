@@ -1,0 +1,15 @@
+<%- include('../partials/header.ejs')%>
+<div class="main">
+  <br><h1>Groups</h1>
+  <% if(groups.length) { %>
+    <% groups.forEach(group=>{ %>
+      <a href="/groups/<%=group.id%>" class="events"><h2><%= group.name %></h2></a>
+  <% })} else { %>
+    <h2>There are no groups to display.</h2>
+  <% } %>
+  <form class="forms">
+    <button type="submit" formmethod="GET" formaction="/groups/newGroup">Create A Group</button>
+  </form>
+  <br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+<%- include('../partials/footer.ejs')%>

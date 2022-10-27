@@ -1,0 +1,22 @@
+<%- include('../partials/header.ejs')%>
+
+    <div class="main">
+        <h1>Edit Group</h1>
+        <form class="forms" method="POST" action="/groups/<%=group.id%>?_method=PUT">
+            <table>
+                <tr>
+                    <td><label for="name" ><b>Group Name:</b></label></td>
+                    <td><input type="text" id="name" name="name" value = "<%= group.name%>" class = "fixed-width" required></td>
+                </tr>
+                <tr>
+                    <td><label for="members"><b>Group Members:</b></label></td>
+                    <td><input type="text" id="members" name="members" value="<%=group.members%>" class = "fixed-width" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class = "align-right"><button>Submit</button></td>
+                </tr>
+                </table>        
+        </form> <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+
+<%- include('../partials/footer.ejs')%>

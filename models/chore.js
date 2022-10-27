@@ -10,10 +10,7 @@ const choreSchema = new Schema({
     type: String,
     required: [true, "Assigned to user id is required"],
   },
-  assignedBy: {
-    type: String,
-    required: [true, "Assigned by is required"],
-  },
+  assignedBy: {type: Schema.Types.ObjectId, ref: "Group"},
   deadline: { type: Date, required: [true, "Deadline is required"] },
   repeat: { type: Boolean, required: true, default: false },
   points: { type: Number, required: false, default: 0 },

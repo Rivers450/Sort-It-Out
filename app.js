@@ -5,11 +5,11 @@ const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-const flash = require("connect-flash");
-const connectionRoutes = require("./routes/connectionRoutes");
+const flash = require('connect-flash');
 const mainRoutes = require("./routes/mainRoutes");
 const userRoutes = require("./routes/userRoutes");
 const choreRoutes = require("./routes/choreRoutes");
+const groupRoutes = require("./routes/groupRoutes");
 
 //create apps
 const app = express();
@@ -57,9 +57,9 @@ app.use(methodOverride("_method"));
 
 //set up routes
 app.use("/users", userRoutes);
-
-app.use("/", mainRoutes);
 app.use("/chores", choreRoutes);
+app.use("/groups", groupRoutes);
+app.use("/", mainRoutes);
 
 app.use((req, res, next) => {
   let err = new Error("The server cannot locate " + req.url);
