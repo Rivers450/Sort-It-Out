@@ -10,8 +10,8 @@ router.get("/", isLoggedIn, controller.index);
 //GET /chores: send html form for creating a new story
 // router.get("/chores", isLoggedIn, controller.allChores);
 
-// //POST /connections: create a new crawl
-// router.post('/', isLoggedIn, validateCrawl, validateResult, controller.create);
+// //POST /chore: create a new chore
+router.post("/", controller.create);
 
 // //GET /connections/:id: send details of crawl identified by id
 // router.get('/:id', validateId, controller.show);

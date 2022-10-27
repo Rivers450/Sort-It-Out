@@ -2,23 +2,51 @@ const model = require("../models/chore");
 // const userModel = require("../models/user");
 const { DateTime, SystemZone } = require("luxon");
 
-exports.index = (req, res, next) => {
-  model
-    .find()
-    .then((chores) => {
-      const updatedChores = chores.map(
-        ({ deadline, title, assignedById, assignedToId, points }) => ({
-          title,
-          points,
+const listChores = async (req, res) => {
+  try {
+    const chores = await model.find();
+    const completedChores = chores
+      .filter(({ completed }) => completed)
+      .map(mapFieldsToCorrectValues);
 
-          deadline: DateTime.fromJSDate(deadline).toLocaleString({
-            month: "2-digit",
-            day: "2-digit",
-            year: "numeric",
-          }),
-        })
-      );
-      res.render("./chore/chores", { chores: updatedChores });
-    })
-    .catch((err) => next(err));
+    const todoChores = chores
+      .filter(({ completed }) => !completed)
+      .map(mapFieldsToCorrectValues);
+    res.render("./chore/chores", { completedChores, todoChores });
+  } catch (err) {
+    console.log(err);
+  }
 };
+
+exports.index = listChores;
+
+exports.create = async (req, res) => {
+  try {
+    await new model(req.body).save();
+    return await listChores(req, res);
+  } catch (err) {
+    console.log(err);
+  }
+};
+/**
+ * This is a helper function to update the existing list with correct data format
+ *
+ * @param {chores} param0 List of chores
+ * @returns list of chores with updated field values
+ */
+const mapFieldsToCorrectValues = ({
+  deadline,
+  title,
+  assignedById,
+  assignedToId,
+  points,
+}) => ({
+  title,
+  points,
+  markCompleted: (title) => alert(`About to complete this ${title}`),
+  deadline: DateTime.fromJSDate(deadline).toLocaleString({
+    month: "2-digit",
+    day: "2-digit",
+    year: "numeric",
+  }),
+});

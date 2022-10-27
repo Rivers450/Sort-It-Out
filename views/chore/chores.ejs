@@ -1,19 +1,42 @@
 <%- include('../partials/header.ejs')%>
+
 <div class="main">
   <br />
   <h1>Chore History</h1>
-  <section class="choresList">
-    <% if(chores.length) { chores.map(({id, title, assignedToName,
-    assignedByName,points, deadline}) => { %>
-
-    <input type="checkbox" />
-    <div class="sub"><%= title %></div>
-    <div><%= points %></div>
-    <div><%= deadline %></div>
-    <% })} else { %>
-    <h2>There are no chores to display.</h2>
-    <% } %>
+  <section class="chores">
+    <article class="completedChores">
+      <% if(completedChores.length) { completedChores.map(({id, title,
+      assignedToName, assignedByName,points, deadline, markCompleted}) => { %>
+      <input type="checkbox" checked />
+      <div class="sub"><%= title %></div>
+      <div><%= points %></div>
+      <div><%= deadline %></div>
+      <% })} else { %>
+      <h2>There are no completedChores to display.</h2>
+      <% } %>
+    </article>
+    <article class="choresListTodo">
+      <div class="choresListTodoContent">
+        <div class="choreListTodoHeader">
+          <div></div>
+          <div>Points</div>
+          <div>Due</div>
+        </div>
+        <div class="completedChores">
+          <% if(todoChores.length) { todoChores.map(({id, title, assignedToName,
+          assignedByName,points, deadline}) => { %>
+          <input type="checkbox" />
+          <div class="sub"><%= title %></div>
+          <div><%= points %></div>
+          <div><%= deadline %></div>
+          <% })} else { %>
+          <h2>There are no todoChores to display.</h2>
+          <% } %>
+        </div>
+      </div>
+    </article>
   </section>
   <br /><br /><br /><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
+
 <%- include('../partials/footer.ejs')%>
