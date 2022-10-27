@@ -214,11 +214,30 @@ input, textarea {
 }
 
 /* Chores css */
-.choresList {
+.chores {
     display: flex;
-    justify-content: center;
+    justify-content:space-between;
     flex-direction: row;
     align-items: center;
-    padding: 25px;
-    margin:25px;
+}
+.chores > article {
+    display: flex;
+    justify-content:space-between;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid red;
+    padding: 30px 30px;
+}
+.choresListTodoContent {
+    display: flex;
+    flex-direction: column; 
+    flex-wrap:wrap;
+    
+}
+
+.choreListTodoHeader {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+   align-items: flex-start;
 }
