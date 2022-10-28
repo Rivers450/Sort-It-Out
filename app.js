@@ -5,7 +5,7 @@ const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-const flash = require('connect-flash');
+const flash = require("connect-flash");
 const mainRoutes = require("./routes/mainRoutes");
 const userRoutes = require("./routes/userRoutes");
 const choreRoutes = require("./routes/choreRoutes");
@@ -19,9 +19,11 @@ let port = 8080;
 let host = "localhost";
 app.set("view engine", "ejs");
 
+const mongoDbUri =
+  process.env.MONGO_URI || "mongodb://localhost:27017/Roaring20s";
 //connect to database
 mongoose
-  .connect("mongodb://localhost:27017/Roaring20s", {
+  .connect(mongoDbUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -38,7 +40,7 @@ app.use(
     secret: "ajfeirf90aeu9eroejfoefj",
     resave: false,
     saveUninitialized: false,
-    store: new MongoStore({ mongoUrl: "mongodb://localhost:27017/NBAD" }),
+    store: new MongoStore({ mongoUrl: mongoDbUri }),
     cookie: { maxAge: 60 * 60 * 1000 },
   })
 );

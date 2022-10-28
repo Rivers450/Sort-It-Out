@@ -4,6 +4,7 @@
   "description": "Final Project website for a bar hopping platform",
   "main": "app.js",
   "scripts": {
+    "start": "$(npm bin)/nodemon app.js ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Rue Remitha",
@@ -24,5 +25,8 @@
     "morgan": "^1.10.0",
     "path": "^0.12.7",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }
