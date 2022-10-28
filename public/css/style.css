@@ -175,13 +175,15 @@ input, textarea {
     font-size: x-large;
     border: 2px solid rgb(255,145,77);
     background-color: rgb(236,228,251);
-    color: white;
-    padding: 10px;
+    color: rgb(248, 114, 31);
+    padding: 5px;
+    text-align: center;
 }
 
-.crawls {
+.chores {
     border: 2px solid rgb(255,145,77);
     padding: 10px;
+    text-align: center;
 }
 
 .link {
@@ -219,11 +221,14 @@ input, textarea {
 }
 
 /* Chores css */
-.chores {
+/*.chores {
     display: flex;
     justify-content:space-between;
     flex-direction: row;
     align-items: center;
+    padding-right: 150px;
+    padding-left: 100px;
+    padding-top: 50px;
 }
 .chores > article {
     display: flex;
@@ -232,12 +237,13 @@ input, textarea {
     align-items: center;
     border: 1px solid red;
     padding: 30px 30px;
+    width: 500px;
 }
 .choresListTodoContent {
     display: flex;
     flex-direction: column; 
     flex-wrap:wrap;
-    
+    width: 300px;
 }
 
 .choreListTodoHeader {
@@ -245,4 +251,4 @@ input, textarea {
     justify-content: space-around;
     flex-direction: row;
    align-items: flex-start;
-}
+}*/
