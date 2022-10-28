@@ -220,6 +220,10 @@ input, textarea {
     font-size: large;
 }
 
+.friends {
+    padding-left: 100px;
+}
+
 /* Chores css */
 /*.chores {
     display: flex;
