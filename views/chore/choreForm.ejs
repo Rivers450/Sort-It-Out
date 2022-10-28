@@ -1,0 +1,64 @@
+<%- include('../partials/header.ejs')%>
+<section>
+  <h1>Create A New Group!</h1>
+
+  <form class="forms" action="/groups/<%=groupId %>/chores" method="POST">
+    <table>
+      <tr>
+        <td>
+          <label for="title"><b>Chore Title:</b></label>
+        </td>
+        <td>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            class="fixed-width"
+            required
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="assignedToMembers"><b>Assigned To:</b></label>
+        </td>
+        <td>
+          <select name="assignedTo" id="assignedToMembers" class="fixed-width">
+            <option value="<%= member %>"><%= member %></option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="assignedByMembers"><b>Assigned By:</b></label>
+        </td>
+        <td>
+          <select name="assignedBy" id="assignedByMembers" class="fixed-width">
+            <option value="<%= member %>"><%= member %></option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="points"><b>Points:</b></label>
+        </td>
+        <td>
+          <input type="number" name="points" id="points" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="members"><b>Deadline:</b></label>
+        </td>
+        <td>
+          <input type="date" name="deadline" class="fixed-width" />
+        </td>
+      </tr>
+      <tr>
+        <td><button type="submit">Create Chore</button></td>
+      </tr>
+    </table>
+  </form>
+  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+</section>
+<%- include('../partials/footer.ejs')%>
