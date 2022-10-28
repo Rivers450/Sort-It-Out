@@ -10,6 +10,7 @@ const mainRoutes = require("./routes/mainRoutes");
 const userRoutes = require("./routes/userRoutes");
 const choreRoutes = require("./routes/choreRoutes");
 const groupRoutes = require("./routes/groupRoutes");
+const friendRoutes = require("./routes/friendRoutes");
 
 //create apps
 const app = express();
@@ -61,6 +62,7 @@ app.use(methodOverride("_method"));
 app.use("/users", userRoutes);
 app.use("/chores", choreRoutes);
 app.use("/groups", groupRoutes);
+app.use("/friends", friendRoutes);
 app.use("/", mainRoutes);
 
 app.use((req, res, next) => {
