@@ -30,13 +30,11 @@
         <td class="tableTitles"><b>Points</b></td>
         <td class="tableTitles"><b>Due</b></td>
       </tr>
-      <%todoChores.forEach(todo =>{ %>
-        <tr>
-          <td class="chores"><input type="checkbox"/>  <%=title%></td>
-          <td class="chores"><p><%=points%></p></td>
-          <td class="chores"><p><%= deadline %></p></td>
-        </tr>
-      <%});%>
+      <tr>
+        <td class="chores"><input type="checkbox"/>  <%=title%></td>
+        <td class="chores"><p><%=points%></p></td>
+        <td class="chores"><p><%= deadline %></p></td>
+      </tr>
     </table>
   <%})} else { %> 
     <h3>There are no chores to do.</h3>
