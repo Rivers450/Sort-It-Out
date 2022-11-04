@@ -28,6 +28,15 @@ exports.create = async (req, res) => {
     console.log(err);
   }
 };
+exports.delete = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await model.deleteOne({ id });
+    return await listChores(req, res);
+  } catch (err) {
+    console.log(err);
+  }
+};
 /**
  * This is a helper function to update the existing list with correct data format
  *

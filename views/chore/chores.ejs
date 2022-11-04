@@ -1,45 +1,48 @@
 <%- include('../partials/header.ejs')%>
 
 <div class="main">
-  <br>
+  <br />
   <h1>Chores</h1>
-  <h2>Chore History</h2> <br>
-  <% if(completedChores.length) { completedChores.map(({id, title, assignedToName, assignedByName, points, deadline, markCompleted}) => { %>
-    <table class="profile">
-      <tr class="tableTitles">
-          <td class="tableTitles"><b>Task</b></td>
-          <td class="tableTitles"><b>Points</b></td>
-          <td class="tableTitles"><b>Due</b></td>
-      </tr>
-      <%completedChores.forEach(completed =>{ %>
-        <tr>
-          <td class="chores"><input type="checkbox"/><%=completed.title%></td>
-          <td class="chores"><%=completed.points%></td>
-          <td class="chores"><%=completed.deadline %></td>
-        </tr>
-      <% }); %>
-    </table>
-  <%})} else { %> 
+  <h2>Chore History</h2>
+  <br />
+  <table class="profile">
+    <tr class="tableTitles">
+      <td class="tableTitles"><b>Task</b></td>
+      <td class="tableTitles"><b>Points</b></td>
+      <td class="tableTitles"><b>Due</b></td>
+    </tr>
+    <% if(completedChores.length) { completedChores.map(({id, title,
+    assignedToName, assignedByName, points, deadline, markCompleted}) => { %>
+    <tr>
+      <td class="chores"><input type="checkbox" /><%=title%>checked</td>
+      <td class="chores"><%=points%></td>
+      <td class="chores"><%=deadline %></td>
+    </tr>
+    <%})} else { %>
     <h3>There are no completed chores to display.</h3>
-  <% } %> <br>
-  <h2>To Do</h2><br>
-  <% if(todoChores.length) { todoChores.map(({id, title, assignedToName, assignedByName, points, deadline}) => { %>
-    <table class="profile">
-      <tr class="tableTitles">
-        <td class="tableTitles"><b>Task</b></td>
-        <td class="tableTitles"><b>Points</b></td>
-        <td class="tableTitles"><b>Due</b></td>
-      </tr>
-      <tr>
-        <td class="chores"><input type="checkbox"/>  <%=title%></td>
-        <td class="chores"><p><%=points%></p></td>
-        <td class="chores"><p><%= deadline %></p></td>
-      </tr>
-    </table>
-  <%})} else { %> 
+    <% } %>
+    <br />
+  </table>
+  <h2>To Do</h2>
+  <br />
+  <table class="profile">
+    <tr class="tableTitles">
+      <td class="tableTitles"><b>Task</b></td>
+      <td class="tableTitles"><b>Points</b></td>
+      <td class="tableTitles"><b>Due</b></td>
+    </tr>
+    <% if(todoChores.length) { todoChores.map(({id, title, assignedToName,
+    assignedByName, points, deadline}) => { %>
+    <tr>
+      <td class="chores"><input type="checkbox" /> <%=title%></td>
+      <td class="chores"><p><%=points%></p></td>
+      <td class="chores"><p><%= deadline %></p></td>
+    </tr>
+    <%})} else { %>
     <h3>There are no chores to do.</h3>
-  <% } %>
-  <br><br><br><br><br><br><br>
+    <% } %>
+  </table>
+  <br /><br /><br /><br /><br /><br /><br />
 </div>
 
 <%- include('../partials/footer.ejs')%>
