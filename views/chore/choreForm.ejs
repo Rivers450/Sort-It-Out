@@ -27,7 +27,7 @@
             <% if (assignedToMembers.length) {%> <%
             assignedToMembers.forEach((member)=> {%>
             <option value="<%= member.id %>">
-              <%=member.firstName %> <%=member.lastName %>
+              <%=member.username %>
             </option>
             <% })} %>
           </select>
