@@ -155,6 +155,15 @@ button {
     font-size: medium;
 }
 
+.emailLink a{
+    background-color: rgb(236,228,251);
+    border: none;
+    color: rgb(248, 114, 31);
+    box-shadow: none;
+    font-family: "Didot";
+    font-size: medium;
+}
+
 .fixed-width{
     width: 500px;
     padding: 10px;
