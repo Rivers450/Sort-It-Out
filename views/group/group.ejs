@@ -1,38 +1,38 @@
 <%- include('../partials/header.ejs')%>
 
 <div class="main">
-  <h1><%= groups.title%></h1>
+  <h1><%= group.title%></h1>
   <h3 class="info">
-    <b>Owned by: <%=groups.owner.firstName%> <%=groups.owner.lastName%></b>
+    <b>Owned by: <%=group.owner.firstName%> <%=group.owner.lastName%></b>
   </h3>
   <h2>Members:</h2>
-  <p><%=groups.members%></p>
+  <p><%=group.memberName%></p>
   <h2>Chores:</h2>
-  <% if(groups.chores) { %> <% groups.forEach(group=>{ %>
-  <p><%=groups.chores%></p>
+  <% if(group.chores) { %> <% group.forEach(group=>{ %>
+  <p><%=group.chores%></p>
   <% })} else { %>
   <h3>There are no chores to display.</h3>
   <% } %>
   <form class="groupForm">
-    <%if(user == groups.owner._id) { %>
+    <%if(user == group.owner._id) { %>
     <button
       type="submit"
       formmethod="GET"
-      formaction="/groups/<%= groups.id %>/choreForm"
+      formaction="/groups/<%= group.id %>/choreForm"
     >
       Add Chores
     </button>
     <button
       type="submit"
       formmethod="GET"
-      formaction="/groups/<%= groups.id %>/edit"
+      formaction="/groups/<%= group.id %>/edit"
     >
       Edit Group
     </button>
     <button
       type="submit"
       formmethod="POST"
-      formaction="/groups/<%= groups.id %>?_method=DELETE"
+      formaction="/groups/<%= group.id %>?_method=DELETE"
     >
       Delete Group
     </button>
@@ -40,7 +40,7 @@
     <button
       type="submit"
       formmethod="POST"
-      formaction="/groups/<%= groups.id %>"
+      formaction="/groups/<%= group.id %>"
     >
       Leave Group
     </button>

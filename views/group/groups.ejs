@@ -2,18 +2,35 @@
 <div class="main">
   <br />
   <h1>Groups</h1>
+  <form class="forms">
+    <input
+      type="text"
+      id="groupToJoin"
+      name="groupToJoin"
+      class="fixed-width"
+      placeholder="Group ID"
+    />
+    <button type="submit" formmethod="GET" formaction="/groups/join">
+      Join Group
+    </button>
+  </form>
   <% if(groups.length) { %> <% groups.forEach(group=>{ %>
+
   <a href="/groups/<%=group.id%>" class="events"><h2><%= group.name %></h2></a>
+  <div class="emailLink">
+    <br />
+    <a
+      href="mailto:?subject=Join my group on the best chore website: Sort It Out!&body=Hey,%0D%0AI recently made a group on this website [Insert Link when we make a host server].%0D%0AI was hoping you would be able to join, the group code is <%=group.id %>%0D%0A%0D%0AThanks"
+      class="share-btn email"
+      ><img height="40" width="40" src="/images/share.png"
+    /></a>
+  </div>
   <% })} else { %>
   <h2>There are no groups to display.</h2>
   <% } %>
   <form class="forms">
     <button type="submit" formmethod="GET" formaction="/groups/newGroup">
       Create A Group
-      <div class = "emailLink">
-        <br>
-        <a href="mailto:?subject=Join my group on the best chore website: Sort It Out!&body=Hey,%0D%0AI recently made a group on this website [Insert Link when we make a host server].%0D%0AI was hoping you would be able to join, the group code is (Insert Group Code)%0D%0A%0D%0AThanks " class="share-btn email">Share</a>
-        </div>    
     </button>
   </form>
   <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />

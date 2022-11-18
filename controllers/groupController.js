@@ -1,11 +1,17 @@
 const model = require("../models/group");
 const choreModel = require("../models/chore");
+const userModel = require("../models/user");
+const group = require("../models/group");
 
 exports.index = (req, res, next) => {
+  const user = req.session.user;
   model
-    .find()
+    .find({ $or: [{ owner: user }, { members: { $in: [user] } }] })
     .then((groups) => {
-      res.render("./group/groups", { groups, taskCreated: null });
+      res.render("./group/groups", {
+        groups,
+        taskCreated: null,
+      });
     })
     .catch((err) => next(err));
 };
@@ -17,6 +23,7 @@ exports.new = (req, res) => {
 exports.create = (req, res, next) => {
   let group = new model(req.body);
   group.owner = req.session.user;
+  group.members = [];
   group
     .save()
     .then((group) => {
@@ -30,6 +37,16 @@ exports.create = (req, res, next) => {
       }
       next(err);
     });
+};
+
+exports.joinGroup = async (req, res) => {
+  const { groupToJoin } = req.query;
+  const member = req.session.user;
+  const group = await model.findById({ id: groupToJoin });
+  group.updateOne({ $set: { "members.$": member } });
+  req.flash("Member Aded to the group");
+  const groups = group.find({ owner: member });
+  res.redirect("/groups", { groups });
 };
 
 exports.choreForm = async (req, res) => {
@@ -57,21 +74,21 @@ exports.createChores = async (req, res) => {
   }
 };
 
-exports.show = (req, res, next) => {
+exports.show = async (req, res) => {
   let id = req.params.id;
 
-  Promise.all([model.findById(id).populate("owner", "firstName lastName")])
-    .then((group) => {
-      if (group) {
-        const [groups] = group;
-        return res.render("./group/group", { groups });
-      } else {
-        let err = new Error("Cannot find a group with id" + id);
-        err.status = 404;
-        next(err);
-      }
-    })
-    .catch((err) => next(err));
+  const group = await model
+    .findById(id)
+    .populate("owner", "firstName lastName")
+    .populate("member", "firstName lastName");
+  if (group) {
+    return res.render("./group/group", {
+      group,
+    });
+  } else {
+    let err = new Error("Cannot find a group with id" + id);
+    err.status = 404;
+  }
 };
 
 exports.edit = (req, res, next) => {
