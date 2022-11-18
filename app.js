@@ -20,7 +20,7 @@ let host = "localhost";
 app.set("view engine", "ejs");
 
 const mongoDbUri =
-  process.env.MONGO_URI || "mongodb://localhost:27017/Roaring20s";
+  process.env.MONGO_URI || "mongodb://127.0.0.1:27017/Roaring20s";
 //connect to database
 mongoose
   .connect(mongoDbUri, {
