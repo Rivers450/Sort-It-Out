@@ -20,6 +20,10 @@ exports.new = (req, res) => {
   res.render("./group/newGroup");
 };
 
+exports.join = (req, res) => {
+  res.render("./group/joinGroup");
+};
+
 exports.create = (req, res, next) => {
   let group = new model(req.body);
   group.owner = req.session.user;
