@@ -17,9 +17,6 @@ router.get("/newGroup", isLoggedIn, controller.new);
 // Join group using ID
 router.get("/join", isLoggedIn, controller.joinGroup);
 
-//GET /joinGroups: send html form for joining a group
-router.get("/joinGroup", isLoggedIn, controller.join);
-
 //POST /groups: create a new group
 router.post("/", isLoggedIn, validateGroup, validateResult, controller.create);
 
