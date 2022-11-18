@@ -1,48 +1,18 @@
 <%- include('../partials/header.ejs')%>
 
-    <div class="main">
-        <h1><%=user.firstName%>'s To Do</h1>
-        <%if(crawls.length) { %>
-            <table class="profile">
-                <tr class="tableTitles">
-                    <td class="tableTitles"><b>Crawl</b></td>
-                    <td class="tableTitles"><b>Category</b></td>
-                    <td class="tableTitles"><b>Actions</b></td>
-                </tr>
-                    <%crawls.forEach(crawl => { %>
-                        <tr>
-                            <td class="crawls"><a href="/connections/<%=crawl.id%>" class="link"><p><%=crawl.title%></p></a></td>
-                            <td class="crawls"><p><%=crawl.category%></p></td>
-                            <td class="crawls"><form>
-                                <button type="submit" formmethod="GET" formaction="/connections/<%= crawl.id %>/edit">Edit</button>
-                                <button type="submit" formmethod="POST" formaction="/connections/<%= crawl.id %>?_method=DELETE">Delete</button>
-                            </form></td>
-                        </tr>
-                    <%}); %>
-            </table>            
-        <%} else { %>
-            <h2>You have no tasks!</h2>
-        <%} %>
-        <h1><%=user.firstName%>'s Leaderboard</h1>
-        <%if(rsvps.length) { %>
-            <table class="profile">
-                <tr class="tableTitles">
-                    <td class="tableTitles"><b>Crawl</b></td>
-                    <td class="tableTitles"><b>Category</b></td>
-                    <td class="tableTitles"><b>Going?</b></td>
-                </tr>
-                    <%rsvps.forEach(rsvp => { %>
-                        <tr>
-                            <td class="crawls"><a href="/connections/<%=rsvp.connection.id%>" class="link"><p><%=rsvp.connection.title%></p></a></td>
-                            <td class="crawls"><p><%=rsvp.connection.category%></p></td>
-                            <td class="crawls"><p><%=rsvp.status%></p></td>
-                        </tr>
-                    <%}); %>
-            </table>            
-        <%} else { %>
-            <h2>1. <%=user.firstName%></h2>
-        <%} %>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    </div>
+<div class="main">
+  <h1><%=user.firstName%>'s To Do</h1>
+
+  <h1><%=user.firstName%>'s Leaderboard</h1>
+  <table class="profile">
+    <tr class="tableTitles">
+      <td class="tableTitles"><b>Crawl</b></td>
+      <td class="tableTitles"><b>Category</b></td>
+      <td class="tableTitles"><b>Going?</b></td>
+    </tr>
+  </table>
+  <h2>1. <%=user.firstName%></h2>
+  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+</div>
 
 <%- include('../partials/footer.ejs')%>

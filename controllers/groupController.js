@@ -43,18 +43,27 @@ exports.create = (req, res, next) => {
 exports.joinGroup = async (req, res) => {
   const { groupToJoin } = req.query;
   const member = req.session.user;
-  await model.findOneAndUpdate(
-    { id: groupToJoin },
-    { $push: { members: member } }
-  );
+  try {
+    await model.findOneAndUpdate(
+      { _id: Types.ObjectId(groupToJoin) },
+      { $push: { members: member } }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+
   req.flash("Member Aded to the group");
   res.redirect("/groups");
 };
 
 exports.choreForm = async (req, res) => {
   const { groupId } = req.params;
-  const [group] = await model.find({ id: groupId }).populate("owner");
-  const assignedToMembers = await userModel.find();
+  const [group] = await model
+    .find({ _id: Types.ObjectId(groupId) })
+    .populate("owner");
+  const assignedToMembers = await userModel.find({
+    _id: { $in: group.members },
+  });
   res.render("./chore/choreForm", { group, assignedToMembers });
 };
 
@@ -95,17 +104,18 @@ exports.show = async (req, res) => {
   }
 };
 
-exports.edit = (req, res, next) => {
+exports.edit = async (req, res) => {
   let id = req.params.id;
-
-  model
-    .findById(id)
-    .then((group) => {
-      if (group) {
-        return res.render("./group/edit", { group });
-      }
-    })
-    .catch((err) => next(err));
+  try {
+    const group = await model.findById(id);
+    if (group) {
+      return res.render("./group/edit", { group });
+    }
+  } catch (err) {
+    console.log(err);
+    req.flash("Failed", "Editing group!");
+    res.redirect("/groups");
+  }
 };
 
 exports.update = (req, res, next) => {
