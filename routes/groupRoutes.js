@@ -15,6 +15,9 @@ router.get("/", isLoggedIn, controller.index);
 //GET /newGroups: send html form for creating a new group
 router.get("/newGroup", isLoggedIn, controller.new);
 
+//GET /joinGroups: send html form for joining a group
+router.get("/joinGroup", isLoggedIn, controller.join);
+
 //POST /groups: create a new group
 router.post("/", isLoggedIn, validateGroup, validateResult, controller.create);
 
