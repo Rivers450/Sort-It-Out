@@ -16,8 +16,8 @@ const friendRoutes = require("./routes/friendRoutes");
 const app = express();
 
 //configure app
-let port = 8080;
-let host = "localhost";
+let port = process.env.PORT || 8080;
+let host = process.env.HOST || "localhost";
 app.set("view engine", "ejs");
 
 const mongoDbUri =
