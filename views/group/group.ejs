@@ -4,6 +4,8 @@
   <h1><%= group.title%></h1>
   <h3 class="info">
     <b>Owned by: <%=group.owner.firstName%> <%=group.owner.lastName%></b>
+    <br>
+    <b>Group ID: <%= group.id %></b>
   </h3>
   <h2>Members:</h2>
   <% if (group.members.length) { %> <% group.members.forEach(member => { %>
