@@ -13,6 +13,9 @@ router.get("/", isLoggedIn, controller.index);
 // //POST /chore: create a new chore
 router.post("/", controller.create);
 
+// //DELETE /chores/:id: deletes a chore
+router.delete("/:id", controller.delete);
+
 // //GET /connections/:id: send details of crawl identified by id
 // router.get('/:id', validateId, controller.show);
 

@@ -4,7 +4,8 @@
   "description": "Final Project website for a bar hopping platform",
   "main": "app.js",
   "scripts": {
-    "start": "$(npm bin)/nodemon app.js ",
+    "start": "node app.js ",
+    "dev": "$(npm bin)/nodemon app.js ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Rue Remitha",

@@ -10,13 +10,14 @@ const mainRoutes = require("./routes/mainRoutes");
 const userRoutes = require("./routes/userRoutes");
 const choreRoutes = require("./routes/choreRoutes");
 const groupRoutes = require("./routes/groupRoutes");
+const friendRoutes = require("./routes/friendRoutes");
 
 //create apps
 const app = express();
 
 //configure app
-let port = 8080;
-let host = "localhost";
+let port = process.env.PORT || 8080;
+let host = process.env.HOST || "localhost";
 app.set("view engine", "ejs");
 
 const mongoDbUri =
@@ -29,7 +30,7 @@ mongoose
   })
   .then(() => {
     app.listen(port, host, () => {
-      console.log("Server is running on port", port);
+      console.log("Server is running on port", host, port);
     });
   })
   .catch((err) => console.log(err.message));
@@ -61,6 +62,7 @@ app.use(methodOverride("_method"));
 app.use("/users", userRoutes);
 app.use("/chores", choreRoutes);
 app.use("/groups", groupRoutes);
+app.use("/friends", friendRoutes);
 app.use("/", mainRoutes);
 
 app.use((req, res, next) => {
