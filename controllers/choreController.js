@@ -4,7 +4,10 @@ const { DateTime, SystemZone } = require("luxon");
 
 const listChores = async (req, res) => {
   try {
-    const chores = await model.find();
+    const chores = await model
+      .find()
+      .populate("assignedBy")
+      .populate("assignedTo");
     const completedChores = chores
       .filter(({ completed }) => completed)
       .map(mapFieldsToCorrectValues);
@@ -46,12 +49,14 @@ exports.delete = async (req, res) => {
 const mapFieldsToCorrectValues = ({
   deadline,
   title,
-  assignedById,
-  assignedToId,
+  assignedBy,
+  assignedTo,
   points,
 }) => ({
   title,
   points,
+  assignedTo,
+  assignedBy,
   markCompleted: (title) => alert(`About to complete this ${title}`),
   deadline: DateTime.fromJSDate(deadline).toLocaleString({
     month: "2-digit",

@@ -2,7 +2,7 @@
 <div class="main">
   <h1>Create A New Chore!</h1>
 
-  <form class="forms" action="/groups/<%=groupId %>/chores" method="POST">
+  <form class="forms" action="/groups/<%=group.id %>/chores" method="POST">
     <table>
       <tr>
         <td>
@@ -24,7 +24,12 @@
         </td>
         <td>
           <select name="assignedTo" id="assignedToMembers" class="fixed-width">
-            <option value="<%= member %>"><%= member %></option>
+            <% if (assignedToMembers.length) {%> <%
+            assignedToMembers.forEach((member)=> {%>
+            <option value="<%= member.id %>">
+              <%=member.firstName %> <%=member.lastName %>
+            </option>
+            <% })} %>
           </select>
         </td>
       </tr>
@@ -34,7 +39,9 @@
         </td>
         <td>
           <select name="assignedBy" id="assignedByMembers" class="fixed-width">
-            <option value="<%= member %>"><%= member %></option>
+            <option value="<%=group.owner.id %>">
+              <%=group.owner.firstName%> <%=group.owner.lastName%>
+            </option>
           </select>
         </td>
       </tr>

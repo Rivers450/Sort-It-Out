@@ -6,13 +6,16 @@
     <b>Owned by: <%=group.owner.firstName%> <%=group.owner.lastName%></b>
   </h3>
   <h2>Members:</h2>
-  <p><%=group.memberName%></p>
+  <% if (group.members.length) { %> <% group.members.forEach(member => { %>
+  <%=member.firstName%> <%=member.lastName%> <% }) %> <% } else { %>
+  <h3>There are no members to display.</h3>
+  <% } %>
   <h2>Chores:</h2>
-  <% if(group.chores) { %> <% group.forEach(group=>{ %>
-  <p><%=group.chores%></p>
-  <% })} else { %>
+  <% if (group.chores.length) { %> <% group.chores.forEach(chore => { %>
+  <%=chore.title%> <%=chore.points%> <%=chore.deadline%> <% }) %> <% } else { %>
   <h3>There are no chores to display.</h3>
   <% } %>
+
   <form class="groupForm">
     <%if(user == group.owner._id) { %>
     <button

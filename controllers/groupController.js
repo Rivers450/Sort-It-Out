@@ -1,3 +1,4 @@
+const { Types } = require("mongoose");
 const model = require("../models/group");
 const choreModel = require("../models/chore");
 const userModel = require("../models/user");
@@ -46,17 +47,19 @@ exports.create = (req, res, next) => {
 exports.joinGroup = async (req, res) => {
   const { groupToJoin } = req.query;
   const member = req.session.user;
-  const group = await model.findById({ id: groupToJoin });
-  group.updateOne({ $set: { "members.$": member } });
+  await model.findOneAndUpdate(
+    { id: groupToJoin },
+    { $push: { members: member } }
+  );
   req.flash("Member Aded to the group");
-  const groups = group.find({ owner: member });
-  res.redirect("/groups", { groups });
+  res.redirect("/groups");
 };
 
 exports.choreForm = async (req, res) => {
   const { groupId } = req.params;
-  const [group] = await model.find({ id: groupId });
-  res.render("./chore/choreForm", { groupId, member: group.members });
+  const [group] = await model.find({ id: groupId }).populate("owner");
+  const assignedToMembers = await userModel.find();
+  res.render("./chore/choreForm", { group, assignedToMembers });
 };
 
 exports.createChores = async (req, res) => {
@@ -84,7 +87,8 @@ exports.show = async (req, res) => {
   const group = await model
     .findById(id)
     .populate("owner", "firstName lastName")
-    .populate("member", "firstName lastName");
+    .populate("members")
+    .populate("chores");
   if (group) {
     return res.render("./group/group", {
       group,
