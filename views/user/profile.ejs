@@ -1,17 +1,29 @@
 <%- include('../partials/header.ejs')%>
 
 <div class="main">
-  <h1><%=user.firstName%>'s To Do</h1>
+  <h1><%=user.firstName%>'s Profile</h1>
 
-  <h1><%=user.firstName%>'s Leaderboard</h1>
   <table class="profile">
-    <tr class="tableTitles">
-      <td class="tableTitles"><b>Crawl</b></td>
-      <td class="tableTitles"><b>Category</b></td>
-      <td class="tableTitles"><b>Going?</b></td>
-    </tr>
+    <thead>
+      <tr class="tableTitles">
+        <th class="tableTitles"><b>Name</b></th>
+        <th class="tableTitles"><b>Email</b></th>
+        <th class="tableTitles"><b>Password?</b></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="tableTitles">
+        <td class="tableTitles">
+          <b><%=user.firstName%> <%=user.lastName%></b>
+        </td>
+        <td class="tableTitles"><b><%=user.email%></b></td>
+        <td class="tableTitles">
+          <b><a href="https://www.w3schools.com">Reset Password</a></b>
+        </td>
+      </tr>
+    </tbody>
   </table>
-  <h2>1. <%=user.firstName%></h2>
+
   <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 </div>
 
