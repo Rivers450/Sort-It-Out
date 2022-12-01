@@ -14,7 +14,17 @@
     <% if(completedChores.length) { completedChores.map(({id, title,
     assignedToName, assignedByName, points, deadline, markCompleted}) => { %>
     <tr>
-      <td class="chores"><input type="checkbox" /><%=title%>checked</td>
+      <td class="chores">
+        <form action="/chores/<%=id %>" method="POST">
+          <input
+            type="checkbox"
+            name="isCompleted"
+            onChange="this.form.submit()"
+            checked
+          />
+        </form>
+        <%=title%>
+      </td>
       <td class="chores"><%=points%></td>
       <td class="chores"><%=deadline %></td>
     </tr>
@@ -34,7 +44,16 @@
     <% if(todoChores.length) { todoChores.map(({id, title, assignedToName,
     assignedByName, points, deadline}) => { %>
     <tr>
-      <td class="chores"><input type="checkbox" /> <%=title%></td>
+      <td class="chores">
+        <form action="/chores/<%=id %>" method="POST">
+          <input
+            type="checkbox"
+            name="isCompleted"
+            onChange="this.form.submit()"
+          />
+        </form>
+        <%=title%>
+      </td>
       <td class="chores"><p><%=points%></p></td>
       <td class="chores"><p><%= deadline %></p></td>
     </tr>

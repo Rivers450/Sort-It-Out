@@ -9,7 +9,7 @@ const listChores = async (req, res) => {
       .populate("assignedBy")
       .populate("assignedTo");
     const completedChores = chores
-      .filter(({ completed }) => completed)
+      .filter(({ completed }) => !!completed)
       .map(mapFieldsToCorrectValues);
 
     const todoChores = chores
@@ -40,6 +40,24 @@ exports.delete = async (req, res) => {
     console.log(err);
   }
 };
+exports.update = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { isCompleted } = req.body || {};
+    const completed = isCompleted === "on" || false;
+    await model.findByIdAndUpdate(
+      id,
+      { completed },
+      {
+        useFindByAndModify: false,
+        runValidators: true,
+      }
+    );
+    return await listChores(req, res);
+  } catch (err) {
+    console.log(err);
+  }
+};
 /**
  * This is a helper function to update the existing list with correct data format
  *
@@ -47,17 +65,20 @@ exports.delete = async (req, res) => {
  * @returns list of chores with updated field values
  */
 const mapFieldsToCorrectValues = ({
+  id,
   deadline,
   title,
   assignedBy,
   assignedTo,
   points,
+  completed,
 }) => ({
+  id,
   title,
   points,
   assignedTo,
   assignedBy,
-  markCompleted: (title) => alert(`About to complete this ${title}`),
+  completed,
   deadline: DateTime.fromJSDate(deadline).toLocaleString({
     month: "2-digit",
     day: "2-digit",

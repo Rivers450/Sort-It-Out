@@ -23,7 +23,7 @@ router.delete("/:id", controller.delete);
 // router.get('/:id/edit', validateId, isLoggedIn, isHost, controller.edit);
 
 // //PUT /connections/:id: update the crawl identified by id
-// router.put('/:id', validateId, isLoggedIn, isHost, validateCrawl, validateResult, controller.update);
+router.post("/:id", isLoggedIn, controller.update);
 
 // //DELETE /connections/:id: delete the crawl identified by id
 // router.delete('/:id', validateId, isLoggedIn, isHost, controller.delete);
