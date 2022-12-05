@@ -31,7 +31,7 @@
       <td class="chores"><p><%=assignedBy.name%></p></td>
     </tr>
     <%})} else { %>
-    <h3>There are no completed chores to display.</h3>
+    <td colspan="4" class="chores">There are no completed chores.</td>
     <% } %>
     <br />
   </table>
@@ -62,7 +62,7 @@
       <td class="chores"><p><%= assignedBy?.name %></p></td>
     </tr>
     <%})} else { %>
-    <h3>There are no chores to do.</h3>
+    <td colspan="4" class="chores">There are no chores to do.</td>
     <% } %>
   </table>
   <br /><br /><br /><br /><br /><br /><br />
