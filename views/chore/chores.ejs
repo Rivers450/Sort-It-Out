@@ -1,0 +1,71 @@
+<%- include('../partials/header.ejs')%>
+
+<div class="main">
+  <br />
+  <h1>Chores</h1>
+  <h2>Chore History</h2>
+  <br />
+  <table class="profile">
+    <tr class="tableTitles">
+      <td class="tableTitles"><b>Task</b></td>
+      <td class="tableTitles"><b>Points</b></td>
+      <td class="tableTitles"><b>Due</b></td>
+      <td class="tableTitles"><b>Assigned By</b></td>
+    </tr>
+    <% if(completedChores.length) { completedChores.map(({id, title, assignedTo,
+    assignedBy, points, deadline, markCompleted}) => { %>
+    <tr>
+      <td class="chores">
+        <form action="/chores/<%=id %>" method="POST">
+          <input
+            type="checkbox"
+            name="isCompleted"
+            onChange="this.form.submit()"
+            checked
+          />
+        </form>
+        <%=title%>
+      </td>
+      <td class="chores"><%=points%></td>
+      <td class="chores"><%=deadline %></td>
+      <td class="chores"><p><%=assignedBy.name%></p></td>
+    </tr>
+    <%})} else { %>
+    <td colspan="4" class="chores">There are no completed chores.</td>
+    <% } %>
+    <br />
+  </table>
+  <h2>To Do</h2>
+  <br />
+  <table class="profile">
+    <tr class="tableTitles">
+      <td class="tableTitles"><b>Task</b></td>
+      <td class="tableTitles"><b>Points</b></td>
+      <td class="tableTitles"><b>Due</b></td>
+      <td class="tableTitles"><b>Assigned By</b></td>
+    </tr>
+    <% if(todoChores.length) { todoChores.map(({id, title, assignedTo = {},
+    assignedBy = {}, points, deadline}) => { %>
+    <tr>
+      <td class="chores">
+        <form action="/chores/<%=id %>" method="POST">
+          <input
+            type="checkbox"
+            name="isCompleted"
+            onChange="this.form.submit()"
+          />
+        </form>
+        <%=title%>
+      </td>
+      <td class="chores"><p><%=points%></p></td>
+      <td class="chores"><p><%= deadline %></p></td>
+      <td class="chores"><p><%= assignedBy?.name %></p></td>
+    </tr>
+    <%})} else { %>
+    <td colspan="4" class="chores">There are no chores to do.</td>
+    <% } %>
+  </table>
+  <br /><br /><br /><br /><br /><br /><br />
+</div>
+
+<%- include('../partials/footer.ejs')%>

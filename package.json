@@ -1,0 +1,33 @@
+{
+  "name": "remitharueproject2",
+  "version": "1.0.0",
+  "description": "Final Project website for a bar hopping platform",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js ",
+    "dev": "$(npm bin)/nodemon app.js ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rue Remitha",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^4.6.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "express-rate-limit": "^6.4.0",
+    "express-session": "^1.17.2",
+    "express-validator": "^6.14.0",
+    "luxon": "^2.3.1",
+    "method-override": "^3.0.0",
+    "mongodb": "^4.4.1",
+    "mongoose": "^6.2.9",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

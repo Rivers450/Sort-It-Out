@@ -1,0 +1,276 @@
+.logo {
+    float: left;
+    width: 200px;
+}
+
+body {
+    margin: 0;
+}
+
+.topnav {
+    font-family: "Didot";
+    color: rgb(248,114,31);
+    background-color: rgb(236,228,251);
+    overflow: hidden;
+}
+
+.topnav a {
+    float: left;
+    color: rgb(248,114,31);
+    text-align: center;
+    padding: 14px, 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.navlinks {
+    padding: 50px;
+}
+
+.topnav a:hover {
+    background-color: white;
+    color: rgb(255,189,89);
+}
+
+.topnav a:active {
+    background-color: rgb(255,145,77);
+    color: white;
+}
+
+.welcome {
+    float: right;
+    padding-right: 40px;
+    padding-top: 90px;
+    color: rgb(248, 114, 31);
+}
+
+footer {
+    font-family: "Didot";
+    color: rgb(248,114,31);
+    background-color: rgb(236,228,251);
+    padding-left: 15px;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding-right: 1550px;
+}
+
+.footerNav {
+    float: right;
+    display: block;
+    text-decoration: none;
+    color:rgb(248, 114, 31);
+    margin-left: 1600px;
+}
+
+footer a:hover {
+    background-color: white;
+    color: rgb(255,189,89);
+}
+
+.homePic {
+    float: center;
+    padding-top: 25px;
+    width: 1750px;
+}
+
+h1 {
+    font-family: "Didot";
+    float: center;
+    text-align: center;
+}
+
+h2.main {
+    font-family: "Didot";
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: center;
+}
+
+.main {
+    font-family: "Didot";
+    background-color: whitesmoke;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 100px;
+    color: rgb(255,145,77);
+}
+
+h2.sub {
+    padding-left: 100px;
+}
+
+ul.events {
+    list-style-type: none;
+    padding-left: 165px;
+}
+
+.homeText {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+a.events {
+    text-decoration: none;
+    display: block;
+    color: rgb(255,189,89);
+    display: block;
+    text-align: left;
+    padding: 14px 170px;
+}
+
+a.events:hover {
+    text-decoration: underline;
+}
+
+img.connectionImg {
+    float: left;
+    width: 500px;
+    padding: 50px;
+}
+
+.info {
+    padding-top: 80px;
+}
+
+.forms {
+    padding: 50px;
+    padding-left: 200px;
+    padding-right: 100px;
+}
+
+.groupForm {
+    padding: 50px;
+    float: right;
+}
+
+button {
+    background-color: rgb(236,228,251);
+    padding: 15px;
+    border: none;
+    color: rgb(248, 114, 31);
+    box-shadow: none;
+    font-family: "Didot";
+    font-size: medium;
+}
+
+.emailLink a{
+    background-color: rgb(236,228,251);
+    border: none;
+    color: rgb(248, 114, 31);
+    box-shadow: none;
+    font-family: "Didot";
+    font-size: medium;
+}
+
+.fixed-width{
+    width: 500px;
+    padding: 10px;
+}
+
+input, textarea {
+    font-family: "Didot";
+}
+
+.profile {
+    width: 60%;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tableTitles {
+    font-size: x-large;
+    border: 2px solid rgb(255,145,77);
+    background-color: rgb(236,228,251);
+    color: rgb(248, 114, 31);
+    padding: 5px;
+    text-align: center;
+}
+
+.chores {
+    border: 2px solid rgb(255,145,77);
+    padding: 10px;
+    text-align: center;
+}
+
+.groups {
+    border: 2px solid rgb(67, 29, 6);
+    padding: 10px;
+    text-align: center;
+}
+
+
+.link {
+    text-decoration: none;
+    display: block;
+    color: rgb(255,189,89);
+    display: block;
+    text-align: left;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.success {
+    background: rgba(238, 214, 77, 0.6);
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    display: block;
+    overflow: hidden;
+    padding: 25px;
+    font-size: large;
+}
+
+.error {
+    background: rgba(255, 102, 51, 0.6);
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    display: block;
+    overflow: hidden;
+    padding: 25px;
+    font-size: large;
+}
+
+.friends {
+    padding-left: 100px;
+}
+
+
+
+/* Chores css */
+/*.chores {
+    display: flex;
+    justify-content:space-between;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 150px;
+    padding-left: 100px;
+    padding-top: 50px;
+}
+.chores > article {
+    display: flex;
+    justify-content:space-between;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid red;
+    padding: 30px 30px;
+    width: 500px;
+}
+.choresListTodoContent {
+    display: flex;
+    flex-direction: column; 
+    flex-wrap:wrap;
+    width: 300px;
+}
+
+.choreListTodoHeader {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+   align-items: flex-start;
+}*/

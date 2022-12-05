@@ -1,0 +1,101 @@
+<%- include('../partials/header.ejs')%>
+
+<div class="main">
+  <h1><%= group.name%></h1>
+  <h3 class="info">
+    <b>Owned by: <%=group.owner.firstName%> <%=group.owner.lastName%></b>
+    <br />
+    <b><%if(user == group.owner._id) { %> Group ID: <%= group.id%> <% } %></b>
+  </h3>
+  <h2>Members:</h2>
+  <% if (group.members.length) { %> <% group.members.forEach(member => { %>
+  <%=member.firstName%> <%=member.lastName%> <% }) %> <% } else { %>
+  <h3>There are no members to display.</h3>
+  <% } %>
+  <h2>Chores:</h2>
+  <table align="left">
+    <thead>
+      <tr class="tableTitles">
+        <th class="tableTitles">Task</th>
+        <th class="tableTitles">Points</th>
+        <th class="tableTitles">Due</th>
+        <th class="tableTitles">Assigned To</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (chores.length) { %> <% chores.forEach(chore => { %>
+      <tr>
+        <td class="groups"><%=chore.title%></td>
+        <td class="groups"><%=chore.points%></td>
+        <td class="groups"><%=chore.deadline%></td>
+        <td class="groups"><%=chore.assignedTo.email%> <% }) %></td>
+      </tr>
+      <% } else { %>
+      <tr>
+        <td colspan="4" class="groups">There are no chores to display.</td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+
+  <h2 class = "leaderboardTitle" align = "right">Leaderboard</h2>
+  <table align = "right">
+    <thead>
+        <tr class = "tableTitles">
+            <th class = "tableTitles">Position</th>
+            <th class = "tableTitles">Name</th>
+            <th class = "tableTitles">Points</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% if (group.members.length) { %> <% group.members.forEach(member => { %>
+        <tr>
+            <td class = "leaders"><% this.rowIndex %></td>
+            <td class = "leaders"><%=member.firstName%> <%=member.lastName%></td>
+            <td class = "leaders">0</td>
+        </tr>
+      <% }) } else {%>
+        <tr>
+          <td colspan="3" class="leaders">Add members to your group to see the leaderboard.</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</br>
+  <form class="groupForm">
+    <%if(user == group.owner._id) { %>
+    <button
+      type="submit"
+      formmethod="GET"
+      formaction="/groups/<%= group.id %>/choreForm"
+    >
+      Add Chores
+    </button>
+    <button
+      type="submit"
+      formmethod="GET"
+      formaction="/groups/<%= group.id %>/edit"
+    >
+      Edit Name
+    </button>
+    <button
+      type="submit"
+      formmethod="POST"
+      formaction="/groups/<%= group.id %>?_method=DELETE"
+    >
+      Delete Group
+    </button>
+    <%} %>
+    <button
+      type="submit"
+      formmethod="POST"
+      formaction="/groups/<%= group.id %>"
+    >
+      Leave Group
+    </button>
+    <!-- needs work -->
+  </form>
+  <br/><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+</div>
+
+<%- include('../partials/footer.ejs')%>
