@@ -5,9 +5,8 @@ const { DateTime, SystemZone } = require("luxon");
 const listChores = async (req, res) => {
   try {
     const chores = await model
-      .find()
-      .populate("assignedBy")
-      .populate("assignedTo");
+      .find({ assignedTo: req.session.user })
+      .populate("assignedBy", "name");
     const completedChores = chores
       .filter(({ completed }) => !!completed)
       .map(mapFieldsToCorrectValues);

@@ -1,4 +1,6 @@
 const { Types } = require("mongoose");
+const { DateTime, SystemZone } = require("luxon");
+
 const model = require("../models/group");
 const choreModel = require("../models/chore");
 const userModel = require("../models/user");
@@ -92,11 +94,27 @@ exports.show = async (req, res) => {
   const group = await model
     .findById(id)
     .populate("owner", "firstName lastName")
-    .populate("members")
-    .populate("chores");
+    .populate("members");
   if (group) {
+    const chores = await choreModel
+      .find({ assignedBy: id })
+      .populate("assignedTo", "firstName lastName email");
+    const choresWithFormatedDate = chores.map(
+      ({ deadline, assignedTo, points, title, completed }) => ({
+        points,
+        title,
+        completed,
+        assignedTo,
+        deadline: DateTime.fromJSDate(deadline).toLocaleString({
+          month: "2-digit",
+          day: "2-digit",
+          year: "numeric",
+        }),
+      })
+    );
     return res.render("./group/group", {
       group,
+      chores: choresWithFormatedDate,
     });
   } else {
     let err = new Error("Cannot find a group with id" + id);

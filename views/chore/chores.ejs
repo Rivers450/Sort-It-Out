@@ -10,9 +10,10 @@
       <td class="tableTitles"><b>Task</b></td>
       <td class="tableTitles"><b>Points</b></td>
       <td class="tableTitles"><b>Due</b></td>
+      <td class="tableTitles"><b>Assigned By</b></td>
     </tr>
-    <% if(completedChores.length) { completedChores.map(({id, title,
-    assignedToName, assignedByName, points, deadline, markCompleted}) => { %>
+    <% if(completedChores.length) { completedChores.map(({id, title, assignedTo,
+    assignedBy, points, deadline, markCompleted}) => { %>
     <tr>
       <td class="chores">
         <form action="/chores/<%=id %>" method="POST">
@@ -27,6 +28,7 @@
       </td>
       <td class="chores"><%=points%></td>
       <td class="chores"><%=deadline %></td>
+      <td class="chores"><p><%=assignedBy.name%></p></td>
     </tr>
     <%})} else { %>
     <h3>There are no completed chores to display.</h3>
@@ -40,9 +42,10 @@
       <td class="tableTitles"><b>Task</b></td>
       <td class="tableTitles"><b>Points</b></td>
       <td class="tableTitles"><b>Due</b></td>
+      <td class="tableTitles"><b>Assigned By</b></td>
     </tr>
-    <% if(todoChores.length) { todoChores.map(({id, title, assignedToName,
-    assignedByName, points, deadline}) => { %>
+    <% if(todoChores.length) { todoChores.map(({id, title, assignedTo = {},
+    assignedBy = {}, points, deadline}) => { %>
     <tr>
       <td class="chores">
         <form action="/chores/<%=id %>" method="POST">
@@ -56,6 +59,7 @@
       </td>
       <td class="chores"><p><%=points%></p></td>
       <td class="chores"><p><%= deadline %></p></td>
+      <td class="chores"><p><%= assignedBy?.name %></p></td>
     </tr>
     <%})} else { %>
     <h3>There are no chores to do.</h3>

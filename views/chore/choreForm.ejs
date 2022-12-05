@@ -3,6 +3,7 @@
   <h1>Create A New Chore!</h1>
 
   <form class="forms" action="/groups/<%=group.id %>/chores" method="POST">
+    <input type="hidden" name="assignedBy" value="<%=group.id%>" />
     <table>
       <tr>
         <td>
@@ -33,18 +34,7 @@
           </select>
         </td>
       </tr>
-      <tr>
-        <td>
-          <label for="assignedByMembers"><b>Assigned By:</b></label>
-        </td>
-        <td>
-          <select name="assignedBy" id="assignedByMembers" class="fixed-width">
-            <option value="<%=group.owner.id %>">
-              <%=group.owner.firstName%> <%=group.owner.lastName%>
-            </option>
-          </select>
-        </td>
-      </tr>
+
       <tr>
         <td>
           <label for="points"><b>Points:</b></label>
