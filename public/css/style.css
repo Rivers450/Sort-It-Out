@@ -195,6 +195,13 @@ input, textarea {
     text-align: center;
 }
 
+.groups {
+    border: 2px solid rgb(67, 29, 6);
+    padding: 10px;
+    text-align: center;
+}
+
+
 .link {
     text-decoration: none;
     display: block;
