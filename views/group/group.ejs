@@ -37,6 +37,33 @@
       <% } %>
     </tbody>
   </table>
+<<<<<<< HEAD
+=======
+
+  <h2 class = "leaderboardTitle" align = "right">Leaderboard</h2>
+  <table align = "right">
+    <thead>
+        <tr class = "tableTitles">
+            <th class = "tableTitles">Position</th>
+            <th class = "tableTitles">Name</th>
+            <th class = "tableTitles">Points</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% if (group.members.length) { %> <% group.members.forEach(member => { %>
+        <tr>
+            <td class = "leaders"><% this.rowIndex %></td>
+            <td class = "leaders"><%=member.firstName%> <%=member.lastName%></td>
+            <td class = "leaders">0</td>
+        </tr>
+      <% }) } else {%>
+        <tr>
+          <td colspan="3" class="leaders">Add members to your group to see the leaderboard.</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+>>>>>>> a0c275d... some leaderboard groundwork
 </br>
   <form class="groupForm">
     <%if(user == group.owner._id) { %>

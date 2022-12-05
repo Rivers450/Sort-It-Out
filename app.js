@@ -20,7 +20,11 @@ let port = process.env.PORT || 8080;
 let host = process.env.HOST || "localhost";
 app.set("view engine", "ejs");
 
+<<<<<<< HEAD
 const mongoDbUri = process.env.MONGO_URI || "mongodb://localhost:27017/";
+=======
+const mongoDbUri = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/Roaring20s";
+>>>>>>> a0c275d... some leaderboard groundwork
 //connect to database
 const dbName = process.env.MONGO_DB_NAME || "Roaring20s";
 mongoose
