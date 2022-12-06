@@ -1,0 +1,56 @@
+<%- include('../partials/header.ejs')%>
+<div class="main">
+  <h1>Reset Password</h1>
+
+  <form class="forms" action="/users/resetpw" method="GET">
+    <table>
+      <tr>
+        <td>
+          <label for="currentPW"><b>Current Password:</b></label>
+        </td>
+        <td>
+          <input
+            type="password"
+            id="currentPW"
+            name="currentPW"
+            class="fixed-width"
+            required
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="NewPW"><b>New Password:</b></label>
+        </td>
+        <td>
+          <input
+            type="password"
+            id="NewPW"
+            name="newPW"
+            class="fixed-width"
+            required
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="rNewPW"><b>Re-enter Password:</b></label>
+        </td>
+        <td>
+          <input
+            type="password"
+            id="rNewPW"
+            name="rNewPW"
+            class="fixed-width"
+            required
+          />
+        </td>
+      </tr>
+      <tr>
+        <td><button>Submit</button></td>
+      </tr>
+    </table>
+  </form>
+  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+</div>
+<%- include('../partials/footer.ejs')%>
