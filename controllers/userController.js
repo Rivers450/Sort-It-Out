@@ -78,3 +78,7 @@ exports.logout = (req, res, next) => {
     else res.redirect("/");
   });
 };
+
+exports.reset = async (_, res) => {
+  return res.render("./user/resetpw");
+};
