@@ -37,6 +37,41 @@
       <% } %>
     </tbody>
   </table>
+
+  <h2 class = "leaderboardTitle" align = "right">Leaderboard</h2>
+  <table align = "right">
+    <thead>
+        <tr class = "tableTitles">
+            <th class = "tableTitles">Position</td></th>
+            <th class = "tableTitles">Name</th>
+            <th class = "tableTitles">Points</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% var position = 1 %>
+      <% if (group.members.length) { %> <% group.members.forEach(member => { %>
+        <tr>
+            <td class = "leaders"><%=position++ %></td>
+            <td class = "leaders"><%=member.firstName%> <%=member.lastName%></td>
+            <td class = "leaders">0</td> <!--0 is the placeholder for points-->
+        </tr>
+      <% }) } else {%>
+        <tr>
+          <td colspan="3" class="leaders">Add members to your group to see the leaderboard.</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</br>
+  <%if(user == group.owner._id) { %>
+  <button type="button" align="right" onclick="reset()">Reset Leaderboard</button>
+  <% } %>
+  <script>
+    function reset() {
+      //placholder function for resetting leaderboard
+    }
+  </script>
+  
 </br>
   <form class="groupForm">
     <%if(user == group.owner._id) { %>
