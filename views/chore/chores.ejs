@@ -27,7 +27,7 @@
       </td>
       <td class="chores"><%=points%></td>
       <td class="chores"><%=deadline %></td>
-      <td class="chores"><p><%=assignedBy.name%> Group</p></td>
+      <td class="chores"><p>Group: <%=assignedBy.name%></p></td>
     </tr>
     <%})} else { %>
     <td colspan="4" class="chores">There are no completed chores.</td>
@@ -58,7 +58,7 @@
       </td>
       <td class="chores"><p><%=points%></p></td>
       <td class="chores"><p><%= deadline %></p></td>
-      <td class="chores"><p><%= assignedBy?.name %> Group</p></td>
+      <td class="chores"><p>Group: <%= assignedBy?.name %></p></td>
     </tr>
     <%})} else { %>
     <td colspan="4" class="chores">There are no chores to do.</td>
