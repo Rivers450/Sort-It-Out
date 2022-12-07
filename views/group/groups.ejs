@@ -1,38 +1,27 @@
 <%- include('../partials/header.ejs')%>
 <div class="main">
   <br />
-  <h1>Groups</h1>
-  <form class="forms">
-    <input
-      type="text"
-      id="groupToJoin"
-      name="groupToJoin"
-      class="fixed-width"
-      placeholder="Group ID"
-    />
-    <button type="submit" formmethod="GET" formaction="/groups/join">
-      Join Group
-    </button>
+  <img class="icon" style="float: left; margin-left: 700px;" src="/images/groups.png" alt="group icon"/><img class="icon" style="float: right; margin-right: 700px;" src="/images/groups.png" alt="group icon"/><h1>Groups</h1>
+  <br><form class="forms joinGroup">
+    <input type="text" id="groupToJoin" name="groupToJoin" class="fixed-width" placeholder="Group ID"/>
+    <button type="submit" formmethod="GET" formaction="/groups/join">Join Group</button>
   </form>
+  <p class="groupHeader">My Groups</p>
 
   <% if(groups.length) { %> <% groups.forEach(group=>{ %>
+  <a
+    href="mailto:?subject=Join my group on the best chore website: Sort It Out!&body=Hey,%0D%0AI recently made a group on this website [Insert Link when we make a host server].%0D%0AI was hoping you would be able to join, the group code is <%=group.id %>%0D%0A%0D%0AThanks">
+    <img class="shareImg" src="/images/share.png" alt="share icon"/>
+  </a>
   <a href="/groups/<%=group.id%>" class="events"><h2><%= group.name %></h2></a>
-  <div class="emailLink">
-    <br />
-    <a
-      href="mailto:?subject=Join my group on the best chore website: Sort It Out!&body=Hey,%0D%0AI recently made a group on this website [Insert Link when we make a host server].%0D%0AI was hoping you would be able to join, the group code is <%=group.id %>%0D%0A%0D%0AThanks"
-      class="share-btn email"
-      ><img height="25" width="25" src="/images/share.png"
-    /></a>
-  </div>
   <% })} else { %>
   <h2>There are no groups to display.</h2>
   <% } %>
-  <form class="forms">
+  <form class="forms createGroup">
     <button type="submit" formmethod="GET" formaction="/groups/newGroup">
       Create A Group
     </button>
   </form>
-  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  <br /><br /><br />
 </div>
 <%- include('../partials/footer.ejs')%>

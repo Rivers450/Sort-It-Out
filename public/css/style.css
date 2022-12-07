@@ -1,10 +1,14 @@
 .logo {
     float: left;
-    width: 195px;
+    width: 160px;
 }
 
 body {
     margin: 0;
+}
+
+.header {
+    width: 100%;
 }
 
 .topnav, .footerNav {
@@ -24,7 +28,7 @@ body {
 }
 
 .navlinks {
-    padding: 80px;
+    padding: 70px;
 }
 
 .topnav a:hover {
@@ -54,10 +58,12 @@ footer {
     position: fixed;
     bottom: 0;
     left: 0;
+    width: 100%;
 }
 
 .footerNav {
-    padding-left: 1470px;
+    float: right;
+    padding-right: 100px;
 }
 
 .footerNav a {
@@ -170,7 +176,7 @@ img.connectionImg {
     padding-left: 50px;
 }
 
-.signUp label {
+label {
     padding-right: 15px;
 }
 
@@ -197,10 +203,6 @@ img.connectionImg {
     padding-left: 325px;
 }
 
-.login label {
-    padding-right: 15px;
-}
-
 .loginImage {
     display: block;
     margin-left: auto;
@@ -218,14 +220,13 @@ button {
     font-size: medium;
 }
 
-.emailLink a{
-    background-color: rgb(236,228,251);
-    border: none;
-    color: rgb(248, 114, 31);
-    box-shadow: none;
-    font-family: "Didot";
-    font-size: medium;
+.shareImg {
+    float: right;
+    width: 40px;
+    padding-top: 20px;
+    padding-right: 1200px;
 }
+
 
 .fixed-width{
     width: 500px;
@@ -262,6 +263,7 @@ input, textarea {
 .choresHeader {
     font-size: 34px;
     padding-left: 200px;
+    text-decoration: underline;
 }
 
 .groups {
@@ -270,6 +272,28 @@ input, textarea {
     text-align: center;
 }
 
+.joinGroup {
+    padding-left: 1000px;
+}
+
+.joinGroup input {
+    margin-right: 20px;
+}
+
+.createGroup {
+    padding-left: 1550px;
+}
+
+.icon {
+    width: 100px;
+}
+
+.groupHeader {
+    font-size: 34px;
+    padding-left: 150px;
+    margin-top: -50px;
+    text-decoration: underline;
+}
 
 .link {
     text-decoration: none;
