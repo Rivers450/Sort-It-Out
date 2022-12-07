@@ -1,6 +1,7 @@
 const model = require("../models/user");
 // const crawl = require("../models/connection");
 //const Rsvp = require("../models/rsvp");
+const bcrypt = require("bcrypt");
 
 exports.new = (req, res) => {
   return res.render("./user/new");
@@ -79,6 +80,40 @@ exports.logout = (req, res, next) => {
   });
 };
 
-exports.reset = async (_, res) => {
+exports.resetPwform = async (_, res) => {
   return res.render("./user/resetpw");
+};
+
+exports.reset = async (req, res) => {
+  let pw = req.body.currentPW;
+  let nPW = req.body.newPW;
+  let rNPW = req.body.rNewPW;
+  if (pw === nPW) {
+    req.flash(
+      "error",
+      "Your new password should not be same as your previous password."
+    );
+    return res.redirect("/users/resetPwform");
+  }
+
+  if (nPW !== rNPW) {
+    req.flash("error", "The new passwords do not match.");
+    return res.redirect("/users/resetPwform");
+  }
+  let userId = req.session.user;
+  const curUser = await model.findById(userId);
+  console.log(curUser);
+  const isPasswordValid = await curUser.comparePassword(pw);
+  if (!isPasswordValid) {
+    req.flash("error", "Invalid current password.");
+    return res.redirect("/users/resetPwform");
+  }
+  curUser.password = nPW;
+  try {
+    await curUser.save();
+  } catch (err) {
+    console.log(err);
+  }
+  req.flash("success", "Your password has been reset. ");
+  return res.redirect("/users/profile");
 };

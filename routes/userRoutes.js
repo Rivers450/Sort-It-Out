@@ -37,6 +37,8 @@ router.get("/logout", isLoggedIn, controller.logout);
 
 //Get /users/resetPW: send yser to login form
 
-router.get("/resetpw", isLoggedIn, controller.reset);
+router.get("/resetPwform", isLoggedIn, controller.resetPwform);
+
+router.post("/reset", isLoggedIn, controller.reset);
 
 module.exports = router;
