@@ -259,6 +259,11 @@ input, textarea {
     text-align: center;
 }
 
+.choresHeader {
+    font-size: 34px;
+    padding-left: 200px;
+}
+
 .groups {
     border: 2px solid rgb(67, 29, 6);
     padding: 10px;
@@ -299,42 +304,3 @@ input, textarea {
     padding: 25px;
     font-size: large;
 }
-
-.friends {
-    padding-left: 100px;
-}
-
-
-
-/* Chores css */
-/*.chores {
-    display: flex;
-    justify-content:space-between;
-    flex-direction: row;
-    align-items: center;
-    padding-right: 150px;
-    padding-left: 100px;
-    padding-top: 50px;
-}
-.chores > article {
-    display: flex;
-    justify-content:space-between;
-    flex-direction: row;
-    align-items: center;
-    border: 1px solid red;
-    padding: 30px 30px;
-    width: 500px;
-}
-.choresListTodoContent {
-    display: flex;
-    flex-direction: column; 
-    flex-wrap:wrap;
-    width: 300px;
-}
-
-.choreListTodoHeader {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-   align-items: flex-start;
-}*/
