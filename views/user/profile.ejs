@@ -3,12 +3,19 @@
 <div class="main">
   <h1><%=user.firstName%>'s Profile</h1>
 
+  <h2 class="profile">Name: <%=user.firstName%> <%=user.lastName%></h2>
+  <h2 class="profile">Email: <%=user.email%></h2>
+  <h2 class="profile">
+    Need to change your password? <a href="/users/resetpw">Reset Password</a>
+  </h2>
+  <br />
+  <h2 class="profile"><%=user.firstName%>'s Groups</h2>
+
   <table class="profile">
     <thead>
       <tr class="tableTitles">
-        <th class="tableTitles"><b>Name</b></th>
-        <th class="tableTitles"><b>Email</b></th>
-        <th class="tableTitles"><b>Password?</b></th>
+        <th class="tableTitles"><b>Group</b></th>
+        <th class="tableTitles"><b>Actions</b></th>
       </tr>
     </thead>
     <tbody>

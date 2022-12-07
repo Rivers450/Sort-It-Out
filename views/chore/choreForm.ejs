@@ -51,6 +51,60 @@
           <input type="date" name="deadline" class="fixed-width" />
         </td>
       </tr>
+      <td>
+        
+        <script>
+          function ShowHideDiv(chkPassport) {
+              var dvPassport = document.getElementById("dvPassport");
+              dvPassport.style.display = chkPassport.checked ? "block" : "none";
+          }
+          function walkDog(){
+          var txt = "Walk dog";
+          document.getElementById("title").value = txt;
+          var txt = "2";
+          document.getElementById("points").value = txt;
+        }
+        function feedDogs(){
+          var txt = "feed dogs";
+          document.getElementById("title").value = txt;
+          var txt = "2";
+          document.getElementById("points").value = txt;
+        }
+        function vac(){
+          var txt = "Vacuum House";
+          document.getElementById("title").value = txt;
+          var txt = "3";
+          document.getElementById("points").value = txt;
+        }
+        function trash(){
+          var txt = "Take trash out";
+          document.getElementById("title").value = txt;
+          var txt = "3";
+          document.getElementById("points").value = txt;
+        }
+      </script>
+      <label for="chkPassport">
+          <input type="checkbox" id="chkPassport" onclick="ShowHideDiv(this)" />
+          Add preset chores:
+      </label>
+      <hr />
+      
+      <div id="dvPassport" style="display: none">
+        <label for = "instructions">First line is 2 pts<br>Second line is 3 pts<br></label>
+        <input type="checkbox" id="chkPassport" onclick="walkDog()" />
+        <label for="dog chores">Walk dog</label>
+
+          <input type="checkbox" id="chkPassport" onclick="feedDogs()" />
+          <label for="dog chores">Feed dogs</label>
+            <br>
+          <input type="checkbox" id="chkPassport" onclick="trash()" />
+          <label for="Vaccuum">Take trash out</label>
+          <input type="checkbox" id="chkPassport" onclick="vac()" />
+          <label for="Vaccuum">Vaccuum House</label>
+      
+      </div>
+      </td>
+      </tr>
       <tr>
         <td><button type="submit">Create Chore</button></td>
       </tr>
