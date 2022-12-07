@@ -295,6 +295,32 @@ input, textarea {
     text-decoration: underline;
 }
 
+.editGroup {
+    text-align: center;
+    padding-left: 500px;
+}
+
+.editGroup button {
+    margin-top: 50px;
+    margin-left: 80px;
+}
+
+.editHeader {
+    float: center;
+    text-align: center;
+    font-size: 24px;
+    color: rgb(248, 114, 31);
+}
+
+.choreForm {
+    padding-left: 500px;
+}
+
+.choreForm button {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
 .link {
     text-decoration: none;
     display: block;
