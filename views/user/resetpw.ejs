@@ -2,7 +2,7 @@
 <div class="main">
   <h1>Reset Password</h1>
 
-  <form class="forms" action="/users/resetpw" method="GET">
+  <form class="forms" action="/users/reset" method="POST">
     <table>
       <tr>
         <td>
@@ -42,6 +42,8 @@
             id="rNewPW"
             name="rNewPW"
             class="fixed-width"
+            minlength="8"
+            maxlength="64"
             required
           />
         </td>
