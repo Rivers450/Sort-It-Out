@@ -10,7 +10,6 @@ const mainRoutes = require("./routes/mainRoutes");
 const userRoutes = require("./routes/userRoutes");
 const choreRoutes = require("./routes/choreRoutes");
 const groupRoutes = require("./routes/groupRoutes");
-const friendRoutes = require("./routes/friendRoutes");
 
 //create apps
 const app = express();
@@ -20,7 +19,7 @@ let port = process.env.PORT || 8080;
 let host = process.env.HOST || "localhost";
 app.set("view engine", "ejs");
 
-const mongoDbUri = process.env.MONGO_URI || "mongodb://localhost:27017/";
+const mongoDbUri = process.env.MONGO_URI || "mongodb+srv://sortitout:WeAreTheBestGr0up@cluster0.xydwzbp.mongodb.net/Roaring20s";
 //connect to database
 const dbName = process.env.MONGO_DB_NAME || "Roaring20s";
 mongoose
@@ -62,7 +61,6 @@ app.use(methodOverride("_method"));
 app.use("/users", userRoutes);
 app.use("/chores", choreRoutes);
 app.use("/groups", groupRoutes);
-app.use("/friends", friendRoutes);
 app.use("/", mainRoutes);
 
 app.use((req, res, next) => {

@@ -1,8 +1,11 @@
 <%- include('../partials/header.ejs')%>
 
     <div class="main">
-        <h1>Edit Group</h1>
-        <form class="forms" method="POST" action="/groups/<%=group.id%>?_method=PUT">
+        <h1>Edit Group</h1> <br><br>
+        <img src="/images/edit.png" alt="edit icon" class="signUpImageLeft">
+        <img src="/images/edit.png" alt="edit icon" class="signUpImageRight">
+        <p class="editHeader">Change your group's name below!</p> 
+        <form class="forms editGroup" method="POST" action="/groups/<%=group.id%>?_method=PUT">
             <table>
                 <tr>
                     <td><label for="name" ><b>Group Name:</b></label></td>

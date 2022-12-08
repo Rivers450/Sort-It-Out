@@ -1,8 +1,9 @@
 <%- include('../partials/header.ejs')%>
 <div class="main">
   <h1>Create A New Chore!</h1>
-
-  <form class="forms" action="/groups/<%=group.id %>/chores" method="POST">
+  <img src="/images/choresLeft.png" alt="chore icons" class="signUpImageLeft" style="width: 400px; margin-left: -100px; margin-top: -50px;">
+  <img src="/images/choresRight.png" alt="chore icons" class="signUpImageRight" style="width: 400px; margin-right: -100px; margin-top: -50px;">
+  <form class="forms choreForm" action="/groups/<%=group.id %>/chores" method="POST">
     <input type="hidden" name="assignedBy" value="<%=group.id%>" />
     <table>
       <tr>
@@ -40,7 +41,7 @@
           <label for="points"><b>Points:</b></label>
         </td>
         <td>
-          <input type="number" name="points" id="points" />
+          <input type="number" name="points" id="points" class="fixed-width" />
         </td>
       </tr>
       <tr>
