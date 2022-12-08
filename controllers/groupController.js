@@ -26,7 +26,7 @@ exports.new = (req, res) => {
 exports.create = (req, res, next) => {
   let group = new model(req.body);
   group.owner = req.session.user;
-  group.members = [];
+  group.members = [req.session.user];
   group
     .save()
     .then((group) => {
