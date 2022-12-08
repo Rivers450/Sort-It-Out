@@ -1,146 +1,70 @@
 <%- include('../partials/header.ejs')%>
+
 <div class="main">
-  <h1>Create A New Chore!</h1>
-
-  <form class="forms" action="/groups/<%=group.id %>/chores" method="POST">
-    <input type="hidden" name="assignedBy" value="<%=group.id%>" />
-    <table>
-      <tr>
-        <td>
-          <label for="title"><b>Chore Title:</b></label>
-        </td>
-        <td>
+  <br />
+  <h1>Chores</h1>
+  <h2>Chore History</h2>
+  <br />
+  <table class="profile">
+    <tr class="tableTitles">
+      <td class="tableTitles"><b>Task</b></td>
+      <td class="tableTitles"><b>Points</b></td>
+      <td class="tableTitles"><b>Due</b></td>
+      <td class="tableTitles"><b>Assigned By Group</b></td>
+    </tr>
+    <% if(completedChores.length) { completedChores.map(({id, title, assignedTo,
+      assignedBy = {}, points, deadline, markCompleted}) => { %>
+    <tr>
+      <td class="chores">
+        <form action="/chores/<%=id %>" method="POST">
           <input
-            type="text"
-            id="title"
-            name="title"
-            class="fixed-width"
-            required
+            type="checkbox"
+            name="isCompleted"
+            onChange="this.form.submit()"
+            checked
           />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label for="assignedToMembers"><b>Assigned To:</b></label>
-        </td>
-        <td>
-          <select name="assignedTo" id="assignedToMembers" class="fixed-width">
-            <% if (assignedToMembers.length) {%> <%
-            assignedToMembers.forEach((member)=> {%>
-            <option value="<%= member.id %>">
-              <%=member.firstName%> <%=member.lastName%>
-            </option>
-            <% })} %>
-          </select>
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          <label for="points"><b>Points:</b></label>
-        </td>
-        <td>
-          <input type="number" name="points" id="points" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label for="members"><b>Deadline:</b></label>
-        </td>
-        <td>
-          <input type="date" name="deadline" class="fixed-width" />
-        </td>
-      </tr>
-      <td>
-        
-        <script>
-          function ShowHideDiv(chkPassport) {
-              var dvPassport = document.getElementById("dvPassport");
-              dvPassport.style.display = chkPassport.checked ? "block" : "none";
-          }
-          function walkDog(){
-          var txt = "Walk the dogs";
-          document.getElementById("title").value = txt;
-        }
-        function feedDogs(){
-          var txt = "Feed the dogs";
-          document.getElementById("title").value = txt;
-        }
-        function vac(){
-          var txt = "Vacuum the house";
-          document.getElementById("title").value = txt;
-        }
-        function trash(){
-          var txt = "Take the trash out";
-          document.getElementById("title").value = txt;
-        }
-        function bathroom(){
-          var txt = "Clean the bathroom";
-          document.getElementById("title").value = txt;
-        }
-        function sweep(){
-          var txt = "Sweep the house";
-          document.getElementById("title").value = txt;
-        }
-        function gutters(){
-          var txt = "Clean the gutters";
-          document.getElementById("title").value = txt;
-        }
-        function dishes(){
-          var txt = "Wash the dishes";
-          document.getElementById("title").value = txt;
-        }
-        function laundry(){
-          var txt = "Fold the laundry";
-          document.getElementById("title").value = txt;
-        }
-        function bed(){
-          var txt = "Make the bed";
-          document.getElementById("title").value = txt;
-        }
-      </script>
-      <label for="chkPassport">
-          <input type="checkbox" id="chkPassport" onclick="ShowHideDiv(this)" />
-          Add preset chores:
-      </label>
-      <hr />
-      
-      <div id="dvPassport" style="display: none">
-        <input type="checkbox" id="chkPassport" onclick="walkDog()" />
-        <label for="dog chores">Walk the dogs</label>
-
-          <input type="checkbox" id="chkPassport" onclick="feedDogs()" />
-          <label for="dog chores">Feed the dogs</label>
-            <br>
-          <input type="checkbox" id="chkPassport" onclick="trash()" />
-          <label for="Vaccuum">Take trash out</label>
-          <input type="checkbox" id="chkPassport" onclick="vac()" />
-          <label for="Vaccuum">Vaccuum the house</label>
-            <br>
-          <input type="checkbox" id="chkPassport" onclick="bathroom()" />
-          <label for="Bathroom">Clean the bathroom</label>
-          <input type="checkbox" id="chkPassport" onclick="sweep()" />
-          <label for="Sweep">Sweep the house</label>
-            <br>
-          <input type="checkbox" id="chkPassport" onclick="gutters()" />
-          <label for="gutters">Clean the gutters</label>
-          <input type="checkbox" id="chkPassport" onclick="dishes()" />
-          <label for="dishes">Wash the dishes</label>
-            <br>
-          <input type="checkbox" id="chkPassport" onclick="laundry()" />
-          <label for="laundry">Fold the laundry</label>
-          <input type="checkbox" id="chkPassport" onclick="bed()" />
-          <label for="MakeTheBed">Make the bed</label>
-
-      
-      </div>
+        </form>
+        <%=title%>
       </td>
-      </tr>
-      <tr>
-        <td><button type="submit">Create Chore</button></td>
-      </tr>
-    </table>
-  </form>
-  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      <td class="chores"><%=points%></td>
+      <td class="chores"><%=deadline %></td>
+      <td class="chores"><%=assignedBy?.name%></p></td>
+    </tr>
+    <%})} else { %>
+    <td colspan="4" class="chores">There are no completed chores.</td>
+    <% } %>
+    <br />
+  </table>
+  <h2>To Do</h2>
+  <br />
+  <table class="profile">
+    <tr class="tableTitles">
+      <td class="tableTitles"><b>Task</b></td>
+      <td class="tableTitles"><b>Points</b></td>
+      <td class="tableTitles"><b>Due</b></td>
+      <td class="tableTitles"><b>Assigned By</b></td>
+    </tr>
+    <% if(todoChores.length) { todoChores.map(({id, title, assignedTo = {},
+    assignedBy = {}, points, deadline}) => { %>
+    <tr>
+      <td class="chores">
+        <form action="/chores/<%=id %>" method="POST">
+          <input
+            type="checkbox"
+            name="isCompleted"
+            onChange="this.form.submit()"
+          />
+        </form>
+        <%=title%>
+      </td>
+      <td class="chores"><p><%=points%></p></td>
+      <td class="chores"><p><%= deadline %></p></td>
+      <td class="chores"><p><%= assignedBy?.name %></p></td>
+    </tr>
+    <%})} else { %>
+    <td colspan="4" class="chores">There are no chores to do.</td>
+    <% } %>
+  </table>
+  <br /><br /><br /><br /><br /><br /><br />
 </div>
 <%- include('../partials/footer.ejs')%>
