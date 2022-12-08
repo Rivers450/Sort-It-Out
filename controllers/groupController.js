@@ -97,7 +97,7 @@ exports.show = async (req, res) => {
     .populate("members");
   if (group) {
     const chores = await choreModel
-      .find({ assignedBy: id })
+      .find({ assignedBy: id, completed: false })
       .populate("assignedTo", "firstName lastName email");
     const choresWithFormatedDate = chores.map(
       ({ deadline, assignedTo, points, title, completed }) => ({
