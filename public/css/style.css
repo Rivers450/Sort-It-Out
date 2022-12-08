@@ -181,8 +181,12 @@ label {
 }
 
 .signupbutton {
-    padding-top: 20px;
-    padding-left: 40px;
+    padding-top: 50px;
+    padding-left: 350px;
+}
+
+.loginbuttons {
+    padding-top: 50px;
 }
 
 .signUpImageLeft {
@@ -200,7 +204,7 @@ label {
 }
 
 .login {
-    padding-left: 325px;
+    padding-left: 300px;
 }
 
 .loginImage {
@@ -227,7 +231,6 @@ button {
     padding-right: 1200px;
 }
 
-
 .fixed-width{
     width: 500px;
     padding: 10px;
@@ -238,7 +241,7 @@ input, textarea {
 }
 
 .profile {
-    font-size: 28px;
+    font-size: 24px;
     width: 60%;
     border-collapse: collapse;
     margin-left: auto;

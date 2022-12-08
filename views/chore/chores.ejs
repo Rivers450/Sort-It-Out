@@ -3,14 +3,13 @@
 <div class="main">
   <br />
   <h1>Chores</h1>
-  <h2>Chore History</h2>
-  <br />
+  <p class="choresHeader">Chore History</p>
   <table class="profile">
     <tr class="tableTitles">
       <td class="tableTitles"><b>Task</b></td>
       <td class="tableTitles"><b>Points</b></td>
       <td class="tableTitles"><b>Due</b></td>
-      <td class="tableTitles"><b>Assigned By Group</b></td>
+      <td class="tableTitles"><b>Assigned By</b></td>
     </tr>
     <% if(completedChores.length) { completedChores.map(({id, title, assignedTo,
       assignedBy = {}, points, deadline, markCompleted}) => { %>
@@ -28,14 +27,14 @@
       </td>
       <td class="chores"><%=points%></td>
       <td class="chores"><%=deadline %></td>
-      <td class="chores"><%=assignedBy?.name%></p></td>
+      <td class="chores"><%=assignedBy?.name %></td>
     </tr>
     <%})} else { %>
     <td colspan="4" class="chores">There are no completed chores.</td>
     <% } %>
     <br />
   </table>
-  <h2>To Do</h2>
+  <p class="choresHeader">To Do</p>
   <br />
   <table class="profile">
     <tr class="tableTitles">
