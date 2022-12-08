@@ -1,8 +1,11 @@
 <%- include('../partials/header.ejs')%>
 
 <div class="main">
-  <h1>Create A New Group!</h1><br>
-
+  <h1>Create A New Group!</h1><br><br>
+  <img src="/images/new.png" alt="new icon" class="signUpImageLeft">
+  <img src="/images/new.png" alt="new icon" class="signUpImageRight">
+  <p class="editHeader">It's easy! Just enter a name for your group and click the Create Group button!</p> 
+  <p class="editHeader">Then, you'll be taken to a new page for your group!</p> 
   <form class="forms editGroup" action="/groups" method="POST">
     <table>
       <tr>
@@ -20,11 +23,11 @@
         </td>
       </tr>
       <tr>
-        <td><button>Create Group</button></td>
+        <td colspan="2"><button>Create Group</button></td>
       </tr>
     </table>
   </form>
-  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  <br /><br /><br /><br /><br /><br /><br /><br /><br />
 </div>
 
 <%- include('../partials/footer.ejs')%>
