@@ -49,12 +49,12 @@
         </tr>
     </thead>
     <tbody>
-      <% var position = 1 %>
-      <% if (group.members.length) { %> <% group.members.forEach(member => { %>
+      <% let position = 1 %>
+      <% if (members.length) { %> <% members.forEach(member => { %>
         <tr>
             <td class = "leaders"><%=position++ %></td>
             <td class = "leaders"><%=member.firstName%> <%=member.lastName%></td>
-            <td class = "leaders">0</td> <!--0 is the placeholder for points-->
+            <td class = "leaders"><%=member.score%></td> <!--0 is the placeholder for points-->
         </tr>
       <% }) } else {%>
         <tr>
