@@ -1,9 +1,8 @@
 <%- include('../partials/header.ejs')%>
 <div class="main">
   <h1>Create A New Chore!</h1>
-  <img src="/images/choresLeft.png" alt="chore icons" class="signUpImageLeft" style="width: 400px; margin-left: -100px; margin-top: -50px;">
-  <img src="/images/choresRight.png" alt="chore icons" class="signUpImageRight" style="width: 400px; margin-right: -100px; margin-top: -50px;">
-  <form class="forms choreForm" action="/groups/<%=group.id %>/chores" method="POST">
+
+  <form class="forms" action="/groups/<%=group.id %>/chores" method="POST">
     <input type="hidden" name="assignedBy" value="<%=group.id%>" />
     <table>
       <tr>
@@ -41,7 +40,7 @@
           <label for="points"><b>Points:</b></label>
         </td>
         <td>
-          <input type="number" name="points" id="points" class="fixed-width" />
+          <input type="number" name="points" id="points" />
         </td>
       </tr>
       <tr>
@@ -60,28 +59,44 @@
               dvPassport.style.display = chkPassport.checked ? "block" : "none";
           }
           function walkDog(){
-          var txt = "Walk dog";
+          var txt = "Walk the dogs";
           document.getElementById("title").value = txt;
-          var txt = "2";
-          document.getElementById("points").value = txt;
         }
         function feedDogs(){
-          var txt = "feed dogs";
+          var txt = "Feed the dogs";
           document.getElementById("title").value = txt;
-          var txt = "2";
-          document.getElementById("points").value = txt;
         }
         function vac(){
-          var txt = "Vacuum House";
+          var txt = "Vacuum the house";
           document.getElementById("title").value = txt;
-          var txt = "3";
-          document.getElementById("points").value = txt;
         }
         function trash(){
-          var txt = "Take trash out";
+          var txt = "Take the trash out";
           document.getElementById("title").value = txt;
-          var txt = "3";
-          document.getElementById("points").value = txt;
+        }
+        function bathroom(){
+          var txt = "Clean the bathroom";
+          document.getElementById("title").value = txt;
+        }
+        function sweep(){
+          var txt = "Sweep the house";
+          document.getElementById("title").value = txt;
+        }
+        function gutters(){
+          var txt = "Clean the gutters";
+          document.getElementById("title").value = txt;
+        }
+        function dishes(){
+          var txt = "Wash the dishes";
+          document.getElementById("title").value = txt;
+        }
+        function laundry(){
+          var txt = "Fold the laundry";
+          document.getElementById("title").value = txt;
+        }
+        function bed(){
+          var txt = "Make the bed";
+          document.getElementById("title").value = txt;
         }
       </script>
       <label for="chkPassport">
@@ -91,17 +106,32 @@
       <hr />
       
       <div id="dvPassport" style="display: none">
-        <label for = "instructions">First line is 2 pts<br>Second line is 3 pts<br></label>
         <input type="checkbox" id="chkPassport" onclick="walkDog()" />
-        <label for="dog chores">Walk dog</label>
+        <label for="dog chores">Walk the dogs</label>
 
           <input type="checkbox" id="chkPassport" onclick="feedDogs()" />
-          <label for="dog chores">Feed dogs</label>
+          <label for="dog chores">Feed the dogs</label>
             <br>
           <input type="checkbox" id="chkPassport" onclick="trash()" />
           <label for="Vaccuum">Take trash out</label>
           <input type="checkbox" id="chkPassport" onclick="vac()" />
-          <label for="Vaccuum">Vaccuum House</label>
+          <label for="Vaccuum">Vaccuum the house</label>
+            <br>
+          <input type="checkbox" id="chkPassport" onclick="bathroom()" />
+          <label for="Bathroom">Clean the bathroom</label>
+          <input type="checkbox" id="chkPassport" onclick="sweep()" />
+          <label for="Sweep">Sweep the house</label>
+            <br>
+          <input type="checkbox" id="chkPassport" onclick="gutters()" />
+          <label for="gutters">Clean the gutters</label>
+          <input type="checkbox" id="chkPassport" onclick="dishes()" />
+          <label for="dishes">Wash the dishes</label>
+            <br>
+          <input type="checkbox" id="chkPassport" onclick="laundry()" />
+          <label for="laundry">Fold the laundry</label>
+          <input type="checkbox" id="chkPassport" onclick="bed()" />
+          <label for="MakeTheBed">Make the bed</label>
+
       
       </div>
       </td>

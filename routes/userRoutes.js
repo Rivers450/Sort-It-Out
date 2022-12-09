@@ -7,38 +7,50 @@ const {
   validateLogIn,
   validateResult,
 } = require("../middlewares/validator");
+const userRouter = (host, port) => {
+  const router = express.Router();
 
-const router = express.Router();
+  //GET /users/new: send html form for creating a new user account
+  router.get("/new", isGuest, controller.new);
 
-//GET /users/new: send html form for creating a new user account
-router.get("/new", isGuest, controller.new);
+  //POST /users: create a new user account
+  router.post("/", isGuest, validateSignUp, validateResult, controller.create);
 
-//POST /users: create a new user account
-router.post("/", isGuest, validateSignUp, validateResult, controller.create);
+  //GET /users/login: send html for logging in
+  router.get("/loginForm", isGuest, controller.getUserLogin);
 
-//GET /users/login: send html for logging in
-router.get("/login", isGuest, controller.getUserLogin);
+  //POST /users/login: authenticate user's login
+  router.post(
+    "/login",
+    logInLimiter,
+    isGuest,
+    validateLogIn,
+    validateResult,
+    controller.login
+  );
 
-//POST /users/login: authenticate user's login
-router.post(
-  "/login",
-  logInLimiter,
-  isGuest,
-  validateLogIn,
-  validateResult,
-  controller.login
-);
+  //GET /users/profile: send user's profile page
+  router.get("/profile", isLoggedIn, controller.profile);
 
-//GET /users/profile: send user's profile page
-router.get("/profile", isLoggedIn, controller.profile);
+  //POST /users/logout: logout a user
+  router.get("/logout", isLoggedIn, controller.logout);
 
-//POST /users/logout: logout a user
-router.get("/logout", isLoggedIn, controller.logout);
+  //Get /users/resetPW: send yser to login form
 
-//Get /users/resetPW: send yser to login form
+  router.get("/resetPwform", isLoggedIn, controller.resetPwform);
 
-router.get("/resetPwform", isLoggedIn, controller.resetPwform);
+  router.post("/reset", isLoggedIn, controller.reset);
 
-router.post("/reset", isLoggedIn, controller.reset);
+  router.get("/forgotPasswordEmail", controller.forgotPasswordEmail);
 
-module.exports = router;
+  router.post("/forgotPassword", controller.forgotPassword(host, port));
+
+  router.get("/resetPasswordLink", controller.resetPasswordLink);
+
+  router.post("/forgotPasswordForm", controller.forgotPasswordForm);
+
+  // Donot touch below this line
+  return router;
+};
+
+module.exports = userRouter;

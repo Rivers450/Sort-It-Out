@@ -1,5 +1,4 @@
-const { body } = require("express-validator");
-const { validationResult } = require("express-validator");
+const { body, validationResult } = require("express-validator");
 
 exports.validateId = (req, res, next) => {
   let id = req.params.id;
@@ -19,8 +18,7 @@ exports.validateSignUp = [
   body("email", "Email must be a valid email address")
     .isEmail()
     .trim()
-    .escape()
-    .normalizeEmail(),
+    .escape(),
   body(
     "password",
     "Password must be at least 8 characters and at most 64 characters"
@@ -31,8 +29,7 @@ exports.validateLogIn = [
   body("email", "Email must be a valid email address")
     .isEmail()
     .trim()
-    .escape()
-    .normalizeEmail(),
+    .escape(),
   body(
     "password",
     "Password must be at least 8 characters and at most 64 characters"

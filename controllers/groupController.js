@@ -26,7 +26,7 @@ exports.new = (req, res) => {
 exports.create = (req, res, next) => {
   let group = new model(req.body);
   group.owner = req.session.user;
-  group.members = [];
+  group.members = [req.session.user];
   group
     .save()
     .then((group) => {
@@ -94,27 +94,51 @@ exports.show = async (req, res) => {
   const group = await model
     .findById(id)
     .populate("owner", "firstName lastName")
-    .populate("members");
+    .populate("members", "firstName lastName email");
   if (group) {
+    // const uniqueGroupMemberIds = new Set(group.members.map(({ _id }) => _id));
+    // const choresByMember = uniqueGroupMemberIds.values().map(id => )
+    // completedChores.reduce((sum, { _id, points }) => sum);
     const chores = await choreModel
-      .find({ assignedBy: id, completed: false })
-      .populate("assignedTo", "firstName lastName email");
-    const choresWithFormatedDate = chores.map(
-      ({ deadline, assignedTo, points, title, completed }) => ({
-        points,
-        title,
-        completed,
-        assignedTo,
-        deadline: DateTime.fromJSDate(deadline).toLocaleString({
-          month: "2-digit",
-          day: "2-digit",
-          year: "numeric",
-        }),
+      .find({ assignedBy: id })
+      .populate("assignedTo", "firstName lastName email _id");
+    const members = group.members.map(
+      ({ firstName, lastName, email, _id }) => ({
+        firstName,
+        lastName,
+        email,
+        id: _id,
+        score: 0,
       })
+    );
+
+    const choresWithFormatedDate = chores.map(
+      ({ deadline, assignedTo, points, title, completed }) => {
+        if (completed) {
+          const member = members.find(
+            ({ id }) => id.toString() === assignedTo._id.toString()
+          );
+          if (member) {
+            member.score += points;
+          }
+        }
+        return {
+          points,
+          title,
+          completed,
+          assignedTo,
+          deadline: DateTime.fromJSDate(deadline).toLocaleString({
+            month: "2-digit",
+            day: "2-digit",
+            year: "numeric",
+          }),
+        };
+      }
     );
     return res.render("./group/group", {
       group,
       chores: choresWithFormatedDate,
+      members: members.sort((a, b) => b.score - a.score),
     });
   } else {
     let err = new Error("Cannot find a group with id" + id);

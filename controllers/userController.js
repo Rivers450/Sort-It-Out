@@ -1,7 +1,15 @@
-const model = require("../models/user");
-// const crawl = require("../models/connection");
-//const Rsvp = require("../models/rsvp");
 const bcrypt = require("bcrypt");
+const nodemailer = require("nodemailer");
+const { v4: uuidv4 } = require("uuid");
+
+const model = require("../models/user");
+const forgotPass = require("../models/forgotPass");
+
+// Create a SMTP transporter object
+const transporter = nodemailer.createTransport({
+  sendmail: true,
+  logger: false,
+});
 
 exports.new = (req, res) => {
   return res.render("./user/new");
@@ -16,7 +24,7 @@ exports.create = (req, res, next) => {
     .save()
     .then((user) => {
       req.flash("success", "Account created! Login!");
-      res.redirect("/users/login");
+      res.redirect("/users/loginForm");
     })
     .catch((err) => {
       if (err.name === "ValidationError") {
@@ -43,11 +51,12 @@ exports.login = (req, res, next) => {
   }
   let password = req.body.password;
   model
-    .findOne({ email: email })
+    .findOne({ email })
     .then((user) => {
       if (!user) {
+        console.log(user, email);
         req.flash("error", "Wrong email address.");
-        res.redirect("back");
+        res.redirect("/users/loginForm");
       } else {
         user.comparePassword(password).then((result) => {
           if (result) {
@@ -57,7 +66,7 @@ exports.login = (req, res, next) => {
             res.redirect("/users/profile");
           } else {
             req.flash("error", "Wrong password.");
-            res.redirect("back");
+            res.redirect("/users/loginForm");
           }
         });
       }
@@ -102,7 +111,6 @@ exports.reset = async (req, res) => {
   }
   let userId = req.session.user;
   const curUser = await model.findById(userId);
-  console.log(curUser);
   const isPasswordValid = await curUser.comparePassword(pw);
   if (!isPasswordValid) {
     req.flash("error", "Invalid current password.");
@@ -116,4 +124,71 @@ exports.reset = async (req, res) => {
   }
   req.flash("success", "Your password has been reset. ");
   return res.redirect("/users/profile");
+};
+
+exports.forgotPasswordEmail = (_, res) => {
+  res.render("./user/forgotPasswordEmail");
+};
+
+exports.forgotPasswordForm = async (req, res) => {
+  const { newPW, rNewPW, email } = req.body;
+  if (newPW !== rNewPW) {
+    req.flash("error", "The new passwords do not match.");
+    return res.redirect("back");
+  }
+  const curUser = await model.findOne({ email });
+  curUser.password = newPW;
+  try {
+    await curUser.save();
+  } catch (err) {
+    console.log(err);
+  }
+  req.flash("success", "Your password has been reset. ");
+  return res.redirect("/users/loginForm");
+};
+
+exports.forgotPassword = (host, port) => async (req, res) => {
+  // 1. Get email from req.params
+  const { email } = req.body;
+  // 2. Check if email exists in DB
+  const curUser = await model.findOne({ email });
+  if (!curUser) {
+    req.flash(
+      "error",
+      "Email is not found in our system. Please verify your email address and proceed. "
+    );
+    return res.redirect("/users/forgotPasswordEmail");
+  }
+  // 3.0 Generate a one-time use code and stroe it in the db agains the email
+  const code = uuidv4();
+  await forgotPass.updateOne({ email }, { email, code }, { upsert: true });
+  const link = `${host}:${port}/users/resetPasswordLink?code=${code}&email=${email}`;
+  const message = {
+    from: "sortitout756@gmail.com",
+    to: `${curUser.firstName} ${curUser.lastName} <${email}>`,
+    subject: "Forgot password for SortItOut!",
+    text: `Please copy theis text into your browser: ${link}`,
+  };
+
+  await transporter.sendMail(message);
+  console.log(message);
+  // 3. 1 Send a link to the email with code
+  // 4. Have a route to handle the clicked link
+  // 4.0 Check if the code passed is the same as the code in 3.0
+  // 4.1 Load the forgetPassword form
+  req.flash(
+    "success",
+    "Please check your email and follow the instruction to reset your password."
+  );
+  return res.redirect("/users/forgotPasswordEmail");
+};
+
+exports.resetPasswordLink = async (req, res) => {
+  const { code, email } = req.query;
+  const forgotPassData = await forgotPass.findOne({ code });
+  if (!forgotPassData) {
+    req.flash("error", "Invalid link. Please restart the process again.");
+    return res.redirect("/users/forgotPasswordEmail");
+  }
+  res.render("./user/forgotPassword", { email });
 };
