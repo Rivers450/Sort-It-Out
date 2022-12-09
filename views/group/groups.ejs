@@ -10,7 +10,7 @@
 
   <% if(groups.length) { %> <% groups.forEach(group=>{ %>
   <a
-    href="mailto:?subject=Join my group on the best chore website: Sort It Out!&body=Hey,%0D%0AI recently made a group on this website [Insert Link when we make a host server].%0D%0AI was hoping you would be able to join, the group code is <%=group.id %>%0D%0A%0D%0AThanks">
+    href="mailto:?subject=Join my group on the best chore website: Sort It Out!&body=Hey,%0D%0AI recently made a group on Sort It Out. %0D%0AI was hoping you would be able to join, the group code is <%=group.id %>%0D%0A%0D%0AThanks">
     <img class="shareImg" src="/images/share.png" alt="share icon"/>
   </a>
   <a href="/groups/<%=group.id%>" class="events"><h2><%= group.name %></h2></a>
