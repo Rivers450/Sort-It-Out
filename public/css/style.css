@@ -156,8 +156,8 @@ img.connectionImg {
     padding-left: 200px;
 }
 
-.info {
-    padding-top: 80px;
+.groupsHeaders {
+    font-size: 24px;
 }
 
 .forms {
@@ -201,6 +201,22 @@ label {
     width: 250px;
     padding: 50px;
     padding-right: 200px;
+}
+
+.profileImg {
+    float: right;
+    width: 400px;
+    padding: 50px;
+    margin-top: -50px;
+    padding-right: 250px;
+}
+
+.groupsImg {
+    float: right;
+    width: 450px;
+    padding-right: 570px;
+    margin-top: -450px;
+    margin-bottom: -100px;
 }
 
 .login {

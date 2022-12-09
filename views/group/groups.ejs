@@ -1,11 +1,11 @@
 <%- include('../partials/header.ejs')%>
 <div class="main">
-  <br />
-  <img class="icon" style="float: left; margin-left: 700px;" src="/images/groups.png" alt="group icon"/><img class="icon" style="float: right; margin-right: 700px;" src="/images/groups.png" alt="group icon"/><h1>Groups</h1>
-  <br><form class="forms joinGroup">
+  <br /><h1>Groups</h1>
+  <form class="forms joinGroup">
     <input type="text" id="groupToJoin" name="groupToJoin" class="fixed-width" placeholder="Group ID"/>
     <button type="submit" formmethod="GET" formaction="/groups/join">Join Group</button>
   </form>
+  
   <p class="groupHeader">My Groups</p>
 
   <% if(groups.length) { %> <% groups.forEach(group=>{ %>
@@ -17,6 +17,7 @@
   <% })} else { %>
   <h2>There are no groups to display.</h2>
   <% } %>
+  <img class="groupsImg" src="/images/groups.png" alt="cleaning pictures"/>
   <form class="forms createGroup">
     <button type="submit" formmethod="GET" formaction="/groups/newGroup">
       Create A Group
