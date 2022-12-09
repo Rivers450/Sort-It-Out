@@ -1,15 +1,8 @@
 const bcrypt = require("bcrypt");
-const nodemailer = require("nodemailer");
 const { v4: uuidv4 } = require("uuid");
 
 const model = require("../models/user");
 const forgotPass = require("../models/forgotPass");
-
-// Create a SMTP transporter object
-const transporter = nodemailer.createTransport({
-  sendmail: true,
-  logger: false,
-});
 
 exports.new = (req, res) => {
   return res.render("./user/new");
@@ -148,6 +141,7 @@ exports.forgotPasswordForm = async (req, res) => {
 };
 
 exports.forgotPassword = (host, port) => async (req, res) => {
+  console.log("my mailer:", req.mailer);
   // 1. Get email from req.params
   const { email } = req.body;
   // 2. Check if email exists in DB
@@ -170,7 +164,7 @@ exports.forgotPassword = (host, port) => async (req, res) => {
     text: `Please copy theis text into your browser: ${link}`,
   };
 
-  await transporter.sendMail(message);
+  await req.transporter.sendMail(message);
   console.log(message);
   // 3. 1 Send a link to the email with code
   // 4. Have a route to handle the clicked link
