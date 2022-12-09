@@ -195,3 +195,25 @@ exports.delete = (req, res, next) => {
     })
     .catch((err) => next(err));
 };
+
+exports.removeMemberFromGroup = async (req, res) => {
+  const groupId = req.params.groupId;
+  const groupModel = await model.findById(groupId);
+  if (!groupModel) {
+    req.flash("error", "Group not found!");
+    return res.redirect("/groups");
+  }
+  const loggedInUserId = req.session.user;
+  try {
+    await model.findOneAndUpdate(
+      { _id: Types.ObjectId(groupId) },
+      { $pull: { members: Types.ObjectId(loggedInUserId) } }
+    );
+  } catch (err) {
+    console.log(err);
+    req.flash("error", "Unexpected error.");
+    return res.redirect("/groups");
+  }
+  req.flash("success", "Sorry to see you going!");
+  res.redirect("/groups");
+};

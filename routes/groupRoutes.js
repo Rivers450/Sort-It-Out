@@ -27,6 +27,12 @@ router.post(
   validateGroup,
   controller.createChores
 );
+router.post(
+  "/leaveGroup/:groupId",
+  isLoggedIn,
+  validateGroup,
+  controller.removeMemberFromGroup
+);
 // GET - /groups/:id/addChore - Loads the form to add chore
 router.get(
   "/:groupId/choreForm",
