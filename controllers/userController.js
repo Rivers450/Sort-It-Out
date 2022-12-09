@@ -70,8 +70,6 @@ exports.login = (req, res, next) => {
 exports.profile = async (req, res) => {
   let id = req.session.user;
   const user = await model.findById(id);
-  // crawl.find({ host: id }),
-  // Rsvp.find({ user: id }).populate("connection"),
   res.render("./user/profile", { user });
 };
 
@@ -153,7 +151,7 @@ exports.forgotPassword = (host, port) => async (req, res) => {
     );
     return res.redirect("/users/forgotPasswordEmail");
   }
-  // 3.0 Generate a one-time use code and stroe it in the db agains the email
+  // 3.0 Generate a one-time use code and store it in the db against the email
   const code = uuidv4();
   await forgotPass.updateOne({ email }, { email, code }, { upsert: true });
   const link = `${host}:${port}/users/resetPasswordLink?code=${code}&email=${email}`;
