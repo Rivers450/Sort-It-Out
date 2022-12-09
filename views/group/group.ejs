@@ -1,19 +1,16 @@
 <%- include('../partials/header.ejs')%>
 
-<div class="main">
-  <h1><%= group.name%></h1>
-  <h3 class="info">
-    <b>Owned by: <%=group.owner.firstName%> <%=group.owner.lastName%></b>
-    <br />
-    <b><%if(user == group.owner._id) { %> Group ID: <%= group.id%> <% } %></b>
-  </h3>
+<div class="main" style="padding-left: 100px; padding-right: 100px;">
+  <br><h1><%= group.name%></h1>
+  <p class="groupsHeaders"><b>Owned By:</b> <%=group.owner.firstName%> <%=group.owner.lastName%></p>
+  <p class="groupsHeaders"><%if(user == group.owner._id) { %> <b>Group ID:</b> <%= group.id%> <% } %></p>
   <h2>Members:</h2>
   <% if (group.members.length) { %> <% group.members.forEach(member => { %>
-  <%=member.firstName%> <%=member.lastName%> <% }) %> <% } else { %>
-  <h3>There are no members to display.</h3>
+  <p style="font-size: 20px; padding-left: 20px;"><%=member.firstName%> <%=member.lastName%></p> <% }) %> <% } else { %>
+  <h3 style="padding-left: 20px;">There are no members to display.</h3>
   <% } %>
   <h2>Chores:</h2>
-  <table align="left">
+  <table align="left" class="profile">
     <thead>
       <tr class="tableTitles">
         <th class="tableTitles">Task</th>
@@ -23,13 +20,13 @@
       </tr>
     </thead>
     <tbody>
-      <% if (chores.length ) { %> <% chores.forEach(chore => { %>
+      <% if (chores.length ) { chores.forEach(chore => { %>
         
       <tr>
-        <td class="groups"><%=chore.title%></td>
-        <td class="groups"><%=chore.points%></td>
-        <td class="groups"><%=chore.deadline%></td>
-        <td class="groups"><%=chore.assignedTo.email%> <% }) %></td>
+        <td class="chores"><%=chore.title%></td>
+        <td class="chores"><%=chore.points%></td>
+        <td class="chores"><%=chore.deadline%></td>
+        <td class="chores"><%=chore.assignedTo.email%> <% }) %></td>
       </tr>
       <% } else { %>
       <tr>
@@ -107,7 +104,7 @@
     </button>
     <!-- needs work -->
   </form>
-  <br/><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  <br/><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br/><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 </div>
 
 <%- include('../partials/footer.ejs')%>
