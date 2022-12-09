@@ -9,6 +9,7 @@ body {
 
 .header {
     width: 100%;
+    height: auto;
 }
 
 .topnav, .footerNav {
@@ -59,6 +60,7 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
+    height: auto;
 }
 
 .footerNav {
@@ -213,9 +215,9 @@ label {
 
 .groupsImg {
     float: right;
-    width: 450px;
-    padding-right: 570px;
-    margin-top: -400px;
+    width: 400px;
+    padding-right: 500px;
+    margin-top: -450px;
     margin-bottom: -100px;
 }
 
