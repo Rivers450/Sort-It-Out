@@ -1,25 +1,52 @@
 <%- include('../partials/header.ejs')%>
 
-    <div class="main">
-        <h1>Login</h1>
-        <img src="/images/avatarIcon.png" alt="avatar" class="loginImage">
-        <form class="forms" action='/users/login' method='POST'>
-            <table class="login">
-                <tr>
-                    <td><label for="email"><b>Email Address:</b></label></td>
-                    <td><input type="email" id="email" name="email" class = "fixed-width" required></td>
-                </tr>
-                <tr>
-                    <td><label for="password"><b>Password:</b></label></td>
-                    <td><input type="password" id="password" name="password" class = "fixed-width" required></td>
-                </tr>
-                <tr>
-                    <td class="loginbuttons" colspan="2"><button>Forgot Password?</button></td>
-                    <td class="loginbuttons" colspan="2"><button>Login</button></td>
-                </tr>
-            </table>
-        </form>
-        <br><br><br><br>
-    </div>
+<div class="main">
+  <h1>Login</h1>
+  <img src="/images/avatarIcon.png" alt="avatar" class="loginImage" />
+  <table class="login">
+    <form class="forms" action="/users/login" method="POST">
+      <tr>
+        <td>
+          <label for="email"><b>Email Address:</b></label>
+        </td>
+        <td>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="fixed-width"
+            required
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="password"><b>Password:</b></label>
+        </td>
+        <td>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="fixed-width"
+            required
+          />
+        </td>
+      </tr>
+      <tr>
+        <td class="loginbuttons" colspan="2">
+          <button type="submit">Login</button>
+        </td>
+      </tr>
+    </form>
+    <tr>
+      <td colspan="2">
+        <a href="/users/forgotPasswordEmail">Forgot Password?</a>
+      </td>
+    </tr>
+  </table>
+
+  <br /><br /><br /><br />
+</div>
 
 <%- include('../partials/footer.ejs')%>

@@ -19,7 +19,9 @@ let port = process.env.PORT || 8080;
 let host = process.env.HOST || "localhost";
 app.set("view engine", "ejs");
 
-const mongoDbUri = process.env.MONGO_URI || "mongodb+srv://sortitout:WeAreTheBestGr0up@cluster0.xydwzbp.mongodb.net/Roaring20s";
+const mongoDbUri =
+  process.env.MONGO_URI ||
+  "mongodb+srv://sortitout:WeAreTheBestGr0up@cluster0.xydwzbp.mongodb.net/Roaring20s";
 //connect to database
 const dbName = process.env.MONGO_DB_NAME || "Roaring20s";
 mongoose
@@ -58,7 +60,7 @@ app.use(morgan("tiny"));
 app.use(methodOverride("_method"));
 
 //set up routes
-app.use("/users", userRoutes);
+app.use("/users", userRoutes(host, port));
 app.use("/chores", choreRoutes);
 app.use("/groups", groupRoutes);
 app.use("/", mainRoutes);

@@ -3,16 +3,17 @@
 <div class="main">
   <br />
   <h1>Chores</h1>
-  <p class="choresHeader">Chore History</p>
+  <h2>Chore History</h2>
+  <br />
   <table class="profile">
     <tr class="tableTitles">
       <td class="tableTitles"><b>Task</b></td>
       <td class="tableTitles"><b>Points</b></td>
       <td class="tableTitles"><b>Due</b></td>
-      <td class="tableTitles"><b>Assigned By</b></td>
+      <td class="tableTitles"><b>Assigned By Group</b></td>
     </tr>
     <% if(completedChores.length) { completedChores.map(({id, title, assignedTo,
-      assignedBy = {}, points, deadline, markCompleted}) => { %>
+    assignedBy, points, deadline, markCompleted}) => { %>
     <tr>
       <td class="chores">
         <form action="/chores/<%=id %>" method="POST">
@@ -27,14 +28,14 @@
       </td>
       <td class="chores"><%=points%></td>
       <td class="chores"><%=deadline %></td>
-      <td class="chores"><%=assignedBy?.name %></td>
+      <td class="chores"><%=assignedBy.name %></p></td>
     </tr>
     <%})} else { %>
     <td colspan="4" class="chores">There are no completed chores.</td>
     <% } %>
     <br />
   </table>
-  <p class="choresHeader">To Do</p>
+  <h2>To Do</h2>
   <br />
   <table class="profile">
     <tr class="tableTitles">
