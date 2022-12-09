@@ -1,8 +1,8 @@
 <%- include('../partials/header.ejs')%>
 <div class="main">
-  <br><h1>Create A New Chore!</h1>
-  <img src="/images/choreForm.png" alt="cleaning graphics" class="choreImg">
-  <form class="forms" style="padding-left: 200px;" action="/groups/<%=group.id %>/chores" method="POST">
+  <h1>Create A New Chore!</h1>
+
+  <form class="forms" action="/groups/<%=group.id %>/chores" method="POST">
     <input type="hidden" name="assignedBy" value="<%=group.id%>" />
     <table>
       <tr>
@@ -106,30 +106,30 @@
       <hr />
       
       <div id="dvPassport" style="display: none">
-        <input type="checkbox" id="chkPassport" onclick="walkDog()" />
+        <input type="radio" id="chkPassport" onclick="walkDog()" />
         <label for="dog chores">Walk the dogs</label>
 
-          <input type="checkbox" id="chkPassport" onclick="feedDogs()" />
+          <input type="radio" id="chkPassport" onclick="feedDogs()" />
           <label for="dog chores">Feed the dogs</label>
             <br>
-          <input type="checkbox" id="chkPassport" onclick="trash()" />
+          <input type="radio" id="chkPassport" onclick="trash()" />
           <label for="Vaccuum">Take trash out</label>
-          <input type="checkbox" id="chkPassport" onclick="vac()" />
+          <input type="radio" id="chkPassport" onclick="vac()" />
           <label for="Vaccuum">Vaccuum the house</label>
             <br>
-          <input type="checkbox" id="chkPassport" onclick="bathroom()" />
+          <input type="radio" id="chkPassport" onclick="bathroom()" />
           <label for="Bathroom">Clean the bathroom</label>
-          <input type="checkbox" id="chkPassport" onclick="sweep()" />
+          <input type="radio" id="chkPassport" onclick="sweep()" />
           <label for="Sweep">Sweep the house</label>
             <br>
-          <input type="checkbox" id="chkPassport" onclick="gutters()" />
+          <input type="radio" id="chkPassport" onclick="gutters()" />
           <label for="gutters">Clean the gutters</label>
-          <input type="checkbox" id="chkPassport" onclick="dishes()" />
+          <input type="radio" id="chkPassport" onclick="dishes()" />
           <label for="dishes">Wash the dishes</label>
             <br>
-          <input type="checkbox" id="chkPassport" onclick="laundry()" />
+          <input type="radio" id="chkPassport" onclick="laundry()" />
           <label for="laundry">Fold the laundry</label>
-          <input type="checkbox" id="chkPassport" onclick="bed()" />
+          <input type="radio" id="chkPassport" onclick="bed()" />
           <label for="MakeTheBed">Make the bed</label>
 
       
