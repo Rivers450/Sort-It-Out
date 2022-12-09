@@ -86,7 +86,7 @@ footer a:hover {
 
 .homePic {
     float: center;
-    padding-top: 25px;
+    padding-top: 10px;
     width: 1750px;
 }
 
@@ -338,6 +338,11 @@ input, textarea {
 .choreForm button {
     margin-top: 50px;
     margin-left: 50px;
+}
+
+.leaderboardTitle {
+    text-align: right;
+    margin-top: -50px;
 }
 
 .link {

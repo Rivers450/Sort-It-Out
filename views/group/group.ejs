@@ -2,6 +2,7 @@
 
 <div class="main" style="padding-left: 100px; padding-right: 100px;">
   <br><h1><%= group.name%></h1>
+  <img src="/images/team.png" alt="group standing together" class="signUpImageRight" style="width: 200px; margin-right: -200px; margin-top: -90px;">
   <p class="groupsHeaders"><b>Owned By:</b> <%=group.owner.firstName%> <%=group.owner.lastName%></p>
   <p class="groupsHeaders"><%if(user == group.owner._id) { %> <b>Group ID:</b> <%= group.id%> <% } %></p>
   <h2>Members:</h2>
@@ -36,8 +37,8 @@
     </tbody>
   </table>
 
-  <h2 class = "leaderboardTitle" align = "right">Leaderboard</h2>
-  <table align = "right">
+  <h2 class = "leaderboardTitle">Leaderboard:</h2>
+  <table align = "right" class="profile" style="width: auto;">
     <thead>
         <tr class = "tableTitles">
             <th class = "tableTitles">Position</td></th>
@@ -49,9 +50,9 @@
       <% let position = 1 %>
       <% if (members.length) { %> <% members.forEach(member => { %>
         <tr>
-            <td class = "leaders"><%=position++ %></td>
-            <td class = "leaders"><%=member.firstName%> <%=member.lastName%></td>
-            <td class = "leaders"><%=member.score%></td> <!--0 is the placeholder for points-->
+            <td class = "chores"><%=position++ %></td>
+            <td class = "chores"><%=member.firstName%> <%=member.lastName%></td>
+            <td class = "chores"><%=member.score%></td> <!--0 is the placeholder for points-->
         </tr>
       <% }) } else {%>
         <tr>
@@ -61,14 +62,6 @@
     </tbody>
   </table>
 </br>
-  <%if(user == group.owner._id) { %>
-  <button type="button" align="right" onclick="reset()">Reset Leaderboard</button>
-  <% } %>
-  <script>
-    function reset() {
-      //placholder function for resetting leaderboard
-    }
-  </script>
   
 </br>
   <form class="groupForm">
@@ -94,6 +87,12 @@
     >
       Delete Group
     </button>
+    <button type="button" align="right" onclick="reset()">Reset Leaderboard</button>
+    <script>
+      function reset() {
+        //placholder function for resetting leaderboard
+      }
+    </script>
     <%} %>
     <button
       type="submit"
@@ -104,7 +103,7 @@
     </button>
     <!-- needs work -->
   </form>
-  <br/><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br/><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  <br/><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 </div>
 
 <%- include('../partials/footer.ejs')%>
