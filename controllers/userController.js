@@ -154,15 +154,26 @@ exports.forgotPassword = (host, port) => async (req, res) => {
   // 3.0 Generate a one-time use code and store it in the db against the email
   const code = uuidv4();
   await forgotPass.updateOne({ email }, { email, code }, { upsert: true });
-  const link = `${host}:${port}/users/resetPasswordLink?code=${code}&email=${email}`;
+  const link = encodeURI(
+    `${host}:${port}/users/resetPasswordLink?code=${code}&email=${email}`
+  );
+
   const message = {
-    from: "sortitout756@gmail.com",
     to: `${curUser.firstName} ${curUser.lastName} <${email}>`,
+    from: "sortitout756@gmail.com",
     subject: "Forgot password for SortItOut!",
-    text: `Please copy theis text into your browser: ${link}`,
+    content: [
+      {
+        type: "text/html",
+        value: `<p>
+    Please copy the link below to reset your password. 
+    Link: ${link}
+    </p>`,
+      },
+    ],
   };
 
-  await req.transporter.sendMail(message);
+  await req.sgMail.send(message);
   console.log(message);
   // 3. 1 Send a link to the email with code
   // 4. Have a route to handle the clicked link

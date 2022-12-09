@@ -96,9 +96,6 @@ exports.show = async (req, res) => {
     .populate("owner", "firstName lastName")
     .populate("members", "firstName lastName email");
   if (group) {
-    // const uniqueGroupMemberIds = new Set(group.members.map(({ _id }) => _id));
-    // const choresByMember = uniqueGroupMemberIds.values().map(id => )
-    // completedChores.reduce((sum, { _id, points }) => sum);
     const chores = await choreModel
       .find({ assignedBy: id })
       .populate("assignedTo", "firstName lastName email _id");
@@ -116,7 +113,7 @@ exports.show = async (req, res) => {
       ({ deadline, assignedTo, points, title, completed }) => {
         if (completed) {
           const member = members.find(
-            ({ id }) => id.toString() === assignedTo._id.toString()
+            ({ id }) => id.toString() === assignedTo?._id.toString()
           );
           if (member) {
             member.score += points;

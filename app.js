@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
-const nodemailer = require("nodemailer");
+const sgMail = require("@sendgrid/mail");
 
 const mainRoutes = require("./routes/mainRoutes");
 const userRoutes = require("./routes/userRoutes");
@@ -22,6 +22,8 @@ let host = process.env.HOST || "localhost";
 app.set("view engine", "ejs");
 
 const mongoDbUri = process.env.MONGO_URI;
+const SG_API_KEY = process.env.SG_API_KEY;
+sgMail.setApiKey(SG_API_KEY);
 //connect to database
 const dbName = process.env.MONGO_DB_NAME || "Roaring20s";
 mongoose
@@ -49,16 +51,12 @@ app.use(
 app.use(flash());
 app.use((req, res, next) => {
   // Create a SMTP transporter object
-  req.transporter = nodemailer.createTransport({
-    sendmail: true,
-    logger: false,
-  });
+  req.sgMail = sgMail;
 
   res.locals.user = req.session.user || null;
   res.locals.name = req.session.name || null;
   res.locals.errorMessages = req.flash("error");
   res.locals.successMessages = req.flash("success");
-  req.mailer = "hello mailer";
   next();
 });
 app.use(express.static("public"));
