@@ -166,8 +166,13 @@ exports.forgotPassword = (host, port) => async (req, res) => {
       {
         type: "text/html",
         value: `<p>
-    Please copy the link below to reset your password. 
+       Hello ${curUser.firstName}, <br/>
+    Thank you for using SortItOut. To reset your password please copy the link below to your browser so you can go ahead and create a new password.<br> 
     Link: ${link}
+    <br/>
+    Thank you, 
+    <br/>
+    Sort-It-Out Support team
     </p>`,
       },
     ],

@@ -1,24 +1,34 @@
 <%- include('../partials/header.ejs')%>
 <div class="main">
-  <br /><h1>Groups</h1>
-  <form class="forms joinGroup" style="margin-left: -150px;">
-    <input type="text" id="groupToJoin" name="groupToJoin" class="fixed-width" placeholder="Group ID"/>
-    <button type="submit" formmethod="GET" formaction="/groups/join">Join Group</button>
+  <br />
+  <h1>Groups</h1>
+  <form class="forms joinGroup" style="margin-left: -150px">
+    <input
+      type="text"
+      id="groupToJoin"
+      name="groupToJoin"
+      class="fixed-width"
+      placeholder="Group ID"
+    />
+    <button type="submit" formmethod="GET" formaction="/groups/join">
+      Join Group
+    </button>
   </form>
-  
-  <img class="groupsImg" src="/images/groups.png" alt="cleaning pictures"/>
+
+  <img class="groupsImg" src="/images/groups.png" alt="cleaning pictures" />
   <p class="groupHeader">My Groups</p>
 
   <% if(groups.length) { %> <% groups.forEach(group=>{ %>
   <a
-    href="mailto:?subject=Join my group on the best chore website: Sort It Out!&body=Hey,%0D%0AI recently made a group on Sort It Out. %0D%0AI was hoping you would be able to join, the group code is <%=group.id %>%0D%0A%0D%0AThanks">
-    <img class="shareImg" src="/images/share.png" alt="share icon"/>
+    href="mailto:?subject=Join my group on the best chore website: Sort It Out!&body=Hey,%0D%0AI recently made a group on Sort It Out. %0D%0AI was hoping you would be able to join, the group code is <%=group.id %>%0D%0A%0D%0AThanks0D%0A%0D%0A"
+  >
+    <img class="shareImg" src="/images/share.png" alt="share icon" />
   </a>
   <a href="/groups/<%=group.id%>" class="events"><h2><%= group.name %></h2></a>
   <% })} else { %>
-  <h2 style="padding-left: 100px;">There are no groups to display.</h2>
+  <h2 style="padding-left: 100px">There are no groups to display.</h2>
   <% } %>
-  <form class="forms createGroup" style="margin-left: -250px;">
+  <form class="forms createGroup" style="margin-left: -250px">
     <button type="submit" formmethod="GET" formaction="/groups/newGroup">
       Create A Group
     </button>
