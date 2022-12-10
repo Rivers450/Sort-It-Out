@@ -61,6 +61,11 @@ footer {
     left: 0;
     width: 100%;
     height: auto;
+    white-space: nowrap;
+}
+
+.copyright {
+    display: inline-block;
 }
 
 .footerNav {
@@ -238,6 +243,12 @@ button {
     box-shadow: none;
     font-family: "Didot";
     font-size: medium;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: white;
+    color: rgb(255,189,89);
 }
 
 .shareImg {

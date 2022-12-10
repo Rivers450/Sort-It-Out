@@ -143,6 +143,13 @@ exports.show = async (req, res) => {
   }
 };
 
+/*void function reset() {
+  members.array.forEach(member => {
+    member.score = 0;
+  });
+  document.getElementById("points").value = member.score;
+}*/
+
 exports.edit = async (req, res) => {
   let id = req.params.id;
   try {

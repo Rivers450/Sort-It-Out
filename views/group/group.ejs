@@ -53,7 +53,7 @@
             <td class = "chores"><%=position++ %></td>
             <td class = "chores"><%=member.firstName%> <%=member.lastName%></td>
             <td class = "chores"><%=member.score%></td> <!--0 is the placeholder for points-->
-        </tr>
+          </tr>
       <% }) } else {%>
         <tr>
           <td colspan="3" class="leaders">Add members to your group to see the leaderboard.</td>
@@ -62,7 +62,7 @@
     </tbody>
   </table>
 </br>
-  
+
 </br>
   <form class="groupForm">
     <%if(user == group.owner._id) { %>
