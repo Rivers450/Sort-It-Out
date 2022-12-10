@@ -1,10 +1,14 @@
 const { Types } = require("mongoose");
-const { DateTime, SystemZone } = require("luxon");
+const dayjs = require("dayjs");
+const { DateTime } = require("luxon");
 
 const model = require("../models/group");
 const choreModel = require("../models/chore");
 const userModel = require("../models/user");
 const group = require("../models/group");
+
+var isSameOrBefore = require("dayjs/plugin/isSameOrBefore");
+dayjs.extend(isSameOrBefore);
 
 exports.index = (req, res, next) => {
   const user = req.session.user;
@@ -111,13 +115,14 @@ exports.show = async (req, res) => {
 
     const choresWithFormatedDate = chores.map(
       ({ deadline, assignedTo, points, title, completed }) => {
-        if (completed) {
-          const member = members.find(
-            ({ id }) => id.toString() === assignedTo?._id.toString()
-          );
-          if (member) {
-            member.score += points;
-          }
+        const member = members.find(
+          ({ id }) => id.toString() === assignedTo?._id.toString()
+        );
+        if (member && completed) {
+          member.score += points;
+        }
+        if (member && !completed && dayjs().isAfter(dayjs(deadline))) {
+          member.score -= points;
         }
         return {
           points,
@@ -142,13 +147,6 @@ exports.show = async (req, res) => {
     err.status = 404;
   }
 };
-
-/*void function reset() {
-  members.array.forEach(member => {
-    member.score = 0;
-  });
-  document.getElementById("points").value = member.score;
-}*/
 
 exports.edit = async (req, res) => {
   let id = req.params.id;
